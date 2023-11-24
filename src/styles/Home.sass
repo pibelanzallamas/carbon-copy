@@ -1,60 +1,64 @@
 .all 
   background-color: $color-principal3
-  width: auto
   min-height: 100vh
+  width: auto
   display: flex
   flex-direction: column
-  justify-content: center
   align-items: center
+  justify-content: center
 
 .portada
-  background: linear-gradient(154deg, $color-principal3 0%, $color-principal2 124.22%)
-  width: 80vw
-  height: 50vh
-  border-radius: 25px
-
-.grid
-  background-image: url("./Group1.png")
-  height: 100%
-  width: 100%
+  background: url("../assets/Group1.svg"), linear-gradient(154deg, $color-principal3 0%, $color-principal2 124.22%)
+  width: 19.6875rem
+  height: 23.625rem
+  border-radius: 1.5625rem
   position: relative
 
+.pinA, .pinB, .logo
+  position: absolute
+
+.pinA
+  width: 5.4375rem
+  height: 5.4375rem
+  margin-top: 4.12rem
+  margin-left: 9.94rem
+
+.pinB
+  width: 7.3125rem
+  height: 7.3125rem
+  margin-top: -1.5rem
+  margin-left: 13.06rem
+
 .logo
-  position: absolute
-  top: 60%
-  left: 5%    
+  width: 17.8125rem
+  height: 7.3125rem
+  margin-top: 13.81rem
+  margin-left: 0.94rem
 
-.pinA 
-  position: absolute
-  top: 18%
-  left: 54%
+.copete
+  width: 19.6875rem
+  margin-top: 0.94rem
 
-.pinB 
-  position: absolute
-  top: -7%
-  left: 68% 
+.texto-copete, .boton-copete
+  display: inline-block
 
-.texto
-  color: $color-principal1
-
-.flecha
-  border: solid 1px $color-principal1
-  border-radius: 25px
-  width: 8rem
-  height: 3rem
-  display: flex
-  justify-content: center
-
-.iconoFecha
-  width: 70%
-  height: 50%
-  border-bottom: solid 1px $color-principal1
+.texto-copete
+  p
+    font-size: 0.75rem
+    width: 7.31rem
+    line-height: 0.9375rem
+    margin-left: 0.37rem
+  img
+    width: 6.125rem
+    height: 2.25rem
+    margin-top: -0.31rem
   
-@media (min-width: 800px)
+.boton-copete
+  width: 10.875rem
+  height: 3.75rem
+  border: solid 1px $color-principal1
+  border-radius: 1.5625rem
+  margin-left: 1.12rem
+  margin-bottom: 0.31rem
 
-    
-
-
-
-
-
+ 

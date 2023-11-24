@@ -1,64 +1,178 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 .all {
   background-color: #0047FF;
-  width: auto;
   min-height: 100vh;
+  width: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.portada {
+  background: url("../assets/Group1.svg"), linear-gradient(154deg, #0047FF 0%, #DADADA 124.22%);
+  width: 19.6875rem;
+  height: 23.625rem;
+  border-radius: 1.5625rem;
+  position: relative;
+}
+
+.pinA, .pinB, .logo {
+  position: absolute;
+}
+
+.pinA {
+  width: 5.4375rem;
+  height: 5.4375rem;
+  margin-top: 4.12rem;
+  margin-left: 9.94rem;
+}
+
+.pinB {
+  width: 7.3125rem;
+  height: 7.3125rem;
+  margin-top: -1.5rem;
+  margin-left: 13.06rem;
+}
+
+.logo {
+  width: 17.8125rem;
+  height: 7.3125rem;
+  margin-top: 13.81rem;
+  margin-left: 0.94rem;
+}
+
+.copete {
+  width: 19.6875rem;
+  margin-top: 0.94rem;
+}
+
+.texto-copete, .boton-copete {
+  display: inline-block;
+}
+
+.texto-copete p {
+  font-size: 0.75rem;
+  width: 7.31rem;
+  line-height: 0.9375rem;
+  margin-left: 0.37rem;
+}
+.texto-copete img {
+  width: 6.125rem;
+  height: 2.25rem;
+  margin-top: -0.31rem;
+}
+
+.boton-copete {
+  width: 10.875rem;
+  height: 3.75rem;
+  border: solid 1px #FFF;
+  border-radius: 1.5625rem;
+  margin-left: 1.12rem;
+  margin-bottom: 0.31rem;
+}
+
+.login {
+  height: 85vh;
+}
+
+.content {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.darkModeButton {
+  border: solid 1px #FFF;
+  border-radius: 10px;
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.portada {
-  background: linear-gradient(154deg, #0047FF 0%, #DADADA 124.22%);
-  width: 80vw;
-  height: 50vh;
-  border-radius: 25px;
+.separador {
+  border-bottom: solid #FFF 1px;
+  margin: 0 1rem;
 }
 
-.grid {
-  background-image: url("./Group1.png");
-  height: 100%;
-  width: 100%;
-  position: relative;
+.title {
+  margin: 1rem;
+  width: 50%;
+  height: auto;
 }
 
-.logo {
-  position: absolute;
-  top: 60%;
-  left: 5%;
+.subtitulo {
+  margin: 0 1rem;
 }
 
-.pinA {
-  position: absolute;
-  top: 18%;
-  left: 54%;
-}
-
-.pinB {
-  position: absolute;
-  top: -7%;
-  left: 68%;
-}
-
-.texto {
-  color: #FFF;
-}
-
-.flecha {
-  border: solid 1px #FFF;
-  border-radius: 25px;
-  width: 8rem;
-  height: 3rem;
+.solapa {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  width: 8.6875rem;
+  border: solid #FFF 1px;
+  border-bottom: none;
+  background: #0047FF;
+  border-top-right-radius: 15px;
   display: flex;
-  justify-content: center;
+}
+.solapa p {
+  display: flex;
+  align-items: center;
+  color: #DADADA;
 }
 
-.iconoFecha {
-  width: 70%;
-  height: 50%;
-  border-bottom: solid 1px #FFF;
+.decoración {
+  display: inline-block;
+  padding: 1rem;
+}
+
+.loginDiv {
+  margin: 0 1rem;
+  padding: 1rem;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border: solid #FFF 1px;
+}
+
+.preview {
+  border: solid #FFF 1px;
+  padding: 1rem;
+  background: #0047FF;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  margin-bottom: 1rem;
+}
+
+.input {
+  border: #FFF solid 1px;
+  margin-bottom: 0.5rem;
+  border-radius: 40px;
+  display: flex;
+  text-align: center;
+  padding: 0.3rem;
+}
+.input input {
+  background-color: inherit;
+  color: #FFF;
+  border: none;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+}
+.input input::placeholder {
+  color: #FFF;
+  font-size: 0.9rem;
+}
+
+.forgotPassword {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #FFB800;
 }
 
 * {
@@ -67,6 +181,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  color: #FFF;
 }
 
 a {
@@ -75,6 +190,11 @@ a {
 
 a:visited {
   color: inherit;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=App.css.map */

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap')
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap')
 
 $color-principal1: #FFF
@@ -7,7 +6,9 @@ $color-principal2: #DADADA
 $color-principal3: #0047FF
 $color-secundario1: #EF88BD
 $color-secundario2: #01FF1A
+
 @import "Home"
+@import "Login"
 
 *
   margin: 0
@@ -15,9 +16,14 @@ $color-secundario2: #01FF1A
   box-sizing: border-box
   font-family: 'Poppins', sans-serif
   font-weight: 400
+  color: $color-principal1
 
 a
   text-decoration: none
 
 a:visited
   color: inherit
+
+input:focus
+  outline: none
+  box-shadow: none
