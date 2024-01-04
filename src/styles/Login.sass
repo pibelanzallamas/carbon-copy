@@ -1,68 +1,57 @@
-.login
-  height: 85vh
+.box
+  min-height: 85vh
+  background: linear-gradient(154deg, $color-principal3 0%, $color-principal2 124.22%)
+  width: 19.6875rem
+  border-radius: 25px
+  padding: 1rem
 
-.content
+.navbar
   display: flex
   justify-content: flex-end
 
-.darkModeButton
+.navbar-button
   border: solid 1px $color-principal1
   border-radius: 10px
   width: 2rem
   height: 2rem
-  margin: 1rem
   display: flex
   justify-content: center
   align-items: center
 
-.separador
+.linea
   border-bottom: solid $color-principal1 1px
-  margin: 0 1rem
-
-.title
-  margin: 1rem
-  width: 50%
-  height: auto
+  margin-top: 0.7rem
+  
+.titulo
+  display: block
 
 .subtitulo
-  margin: 0 1rem
+  font-size: 18px
 
 .solapa
-  margin-top: 1rem
-  margin-left: 1rem
   width: 8.6875rem
   border: solid $color-principal1 1px
   border-bottom: none
   background: $color-principal3
   border-top-right-radius: 15px 
   display: flex
-  p
-    display: flex
-    align-items: center
-    color: $color-principal2
+  align-items: center
+  img
+    padding: 1rem 0.6rem 1rem 0.9rem
+  
 
-.decoración 
-  display: inline-block
-  padding: 1rem
-
-.loginDiv
-  margin: 0 1rem
-  padding: 1rem
-  border-top-right-radius: 15px 
-  border-bottom-left-radius: 15px 
-  border-bottom-right-radius: 15px 
+.contenido
   border: solid $color-principal1 1px
+  border-radius: 0 15px 15px 15px
+  padding: 1rem
 
 .preview
   border: solid $color-principal1 1px
-  padding: 1rem
+  border-radius: 0 25px 25px 25px
   background: $color-principal3
-  border-top-right-radius: 25px
-  border-bottom-right-radius: 25px
-  border-bottom-left-radius: 25px
-  margin-bottom: 1rem
+  padding: 1rem
 
-.input
+.input-box
   border: $color-principal1 solid 1px
   margin-bottom: 0.5rem
   border-radius: 40px
@@ -71,16 +60,33 @@
   padding: 0.3rem
   input
     background-color: inherit
-    color: $color-principal1
     border: none
+    width: 100%
     margin-left: 0.5rem
     font-size: 0.9rem
   input::placeholder
     color: $color-principal1
     font-size: 0.9rem
 
+.user-logo
+  border: solid 1px $color-principal1
+  border-radius: 50%
+  width: 32px  
+
 .forgotPassword
   text-align: right
-  font-size: 0.8rem
+  font-size: 0.75rem
   color: #FFB800
+
+.button-container
+  display: flex
+  justify-content: flex-end
+
+.submitButton
+  border: 1px solid $color-principal1
+  border-radius: 30px
+  padding: 10px 40px
+  background-color: transparent
+  font-size: 14px
+
   

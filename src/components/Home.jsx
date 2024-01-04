@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import carboncopy from "../assets/carboncopy.svg";
 import group19 from "../assets/Group19.svg";
 import group13 from "../assets/Group13.svg";
+import carboncopy from "../assets/carboncopy.svg";
 import logoCarbon1 from "../assets/logoCarbon1.svg";
 import group9 from "../assets/Group9.svg";
 import line10 from "../assets/Line10.svg";
@@ -11,7 +11,7 @@ import logoP5 from "../assets/logoP5_color_5.svg";
 function Home() {
   return (
     <div className="all">
-      <div className="portada">
+      <div className="portada-home">
         <img className="pinA" src={group19}></img>
         <img className="pinB" src={group13}></img>
         <img className="logo" src={carboncopy}></img>

@@ -2,10 +2,11 @@ import React from "react";
 import carbonLogo from "../assets/carbonLogo.svg";
 import vector from "../assets/Vector.svg";
 import group3 from "../assets/Group3.svg";
+import group4 from "../assets/Group4.svg";
 import group5 from "../assets/Group5.svg";
 import group8 from "../assets/Group8.svg";
 
-function Login() {
+function Register() {
   return (
     <div className="all">
       <div className="box">
@@ -36,6 +37,13 @@ function Login() {
           </div>
 
           <div className="input-box top">
+            <div className="user-logo">
+              <img src={group4} alt="group5"></img>
+            </div>
+            <input placeholder="Name" type="password"></input>
+          </div>
+
+          <div className="input-box">
             <img src={group5} alt="group5"></img>
             <input placeholder="Email" type="email"></input>
           </div>
@@ -50,11 +58,11 @@ function Login() {
           </p>
         </div>
         <div className="button-container">
-          <button className="submitButton top">LOGIN</button>
+          <button className="submitButton top">REGISTER</button>
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Register;
