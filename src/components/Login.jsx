@@ -29,7 +29,6 @@ function Login() {
               <p>password: *********</p>
             </div>
           </div>
-
           <div className="input">
             <img className="iconoInput" src={group5} alt="group5"></img>
             <input placeholder="Email" type="email"></input>
