@@ -3,13 +3,9 @@ import vector from "../assets/Vector.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group3 from "../assets/Group3.svg";
 import group5 from "../assets/Group5.svg";
-import group8 from "../assets/Group8.svg";
 import { Link } from "react-router-dom";
-import useInput from "../hooks/useInput";
 
-function Login() {
-  const name = useInput();
-
+function ForgotPass() {
   return (
     <div className="all">
       <div className="box">
@@ -27,7 +23,7 @@ function Login() {
 
         <div className="solapa top">
           <img src={group3} alt="group3"></img>
-          <p>Login</p>
+          <p>Forgot</p>
         </div>
 
         <div className="contenido">
@@ -44,21 +40,16 @@ function Login() {
             <input placeholder="Email" type="email"></input>
           </div>
 
-          <div className="input-box">
-            <img src={group8} alt="group5"></img>
-            <input placeholder="Password" type="password"></input>
-          </div>
-
           <p className="forgotPassword top">
-            <Link to={"/forgot"}>Forgot your password</Link>
+            <Link to="/register">Register</Link>
           </p>
         </div>
         <div className="button-container">
-          <button className="submitButton top">LOGIN</button>
+          <button className="submitButton top">SEND</button>
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default ForgotPass;

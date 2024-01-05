@@ -88,6 +88,11 @@
   margin-left: -16%;
 }
 
+.logoP5 {
+  position: absolute;
+  bottom: 0;
+}
+
 .box {
   min-height: 85vh;
   background: linear-gradient(154deg, #0047FF 0%, #DADADA 124.22%);
@@ -183,6 +188,7 @@
 .forgotPassword {
   text-align: right;
   font-size: 0.75rem;
+  margin-right: 0.5rem;
   color: #FFB800;
 }
 
@@ -198,6 +204,19 @@
   background-color: transparent;
   font-size: 14px;
   cursor: pointer;
+}
+
+.colores {
+  width: 25px;
+  height: 19px;
+  border: 1px solid #FFF;
+  border-radius: 10px;
+  background-color: #FFB800;
+}
+
+.real {
+  font-size: 14px;
+  padding: 10px 15px;
 }
 
 * {
