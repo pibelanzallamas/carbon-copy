@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-.portada-home {
+.portada-welcome {
   background: url("../assets/Group1.svg"), linear-gradient(154deg, #0047FF 0%, #DADADA 124.22%);
   width: 19.6875rem;
   height: 23.625rem;
@@ -94,6 +94,8 @@
   width: 19.6875rem;
   border-radius: 25px;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -117,6 +119,7 @@
 }
 
 .titulo {
+  width: 200px;
   display: block;
 }
 
@@ -141,6 +144,7 @@
   border: solid #FFF 1px;
   border-radius: 0 15px 15px 15px;
   padding: 1rem;
+  flex-grow: 1;
 }
 
 .preview {
@@ -193,6 +197,7 @@
   padding: 10px 40px;
   background-color: transparent;
   font-size: 14px;
+  cursor: pointer;
 }
 
 * {
