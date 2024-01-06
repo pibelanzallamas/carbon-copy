@@ -16,7 +16,6 @@ function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(name.value, email.value, password.value);
     alerts(
       "Usuario creado",
       `El usuario ${name.value} ha sido creado con exito.`,
@@ -58,7 +57,7 @@ function Register() {
                 </p>
                 <p>
                   password: <span>'{"*".repeat(password.length)}'</span>
-                  &#125;;
+                  &#125;
                 </p>
               </div>
             </div>

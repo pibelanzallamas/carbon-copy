@@ -1,72 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import vector from "../assets/Vector.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group3 from "../assets/Group3.svg";
 import group5 from "../assets/Group5.svg";
 import group8 from "../assets/Group8.svg";
 import { Link, useNavigate } from "react-router-dom";
-import useInput from "../hooks/useInput";
 import { alerts } from "../utils/alerts";
 
 function Login() {
   const navigate = useNavigate();
-  const email = useInput("");
-  const password = useInput("");
+  const [email, setEmail] = useState("kath@p5.com");
+  const [password, setPassword] = useState("********");
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(email.value, password.value);
     alerts("Bienvenido!", `Hola usuario ingreso con exito.`, "success");
     navigate("/home");
   }
 
   return (
     <div className="all">
-      <div className="box">
-        <div className="navbar">
-          <div className="navbar-button">
-            <img src={vector} alt="vector"></img>
+      <form onSubmit={handleSubmit}>
+        <div className="box">
+          <div className="navbar">
+            <div className="navbar-button">
+              <img src={vector} alt="vector"></img>
+            </div>
           </div>
-        </div>
 
-        <div className="linea"></div>
+          <div className="linea"></div>
 
-        <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
+          <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
 
-        <p className="subtitulo top"> Give style to your code</p>
+          <p className="subtitulo top"> Give style to your code</p>
 
-        <div className="solapa top">
-          <img src={group3} alt="group3"></img>
-          <p>Login</p>
-        </div>
+          <div className="solapa top">
+            <img src={group3} alt="group3"></img>
+            <p>Login</p>
+          </div>
 
-        <form onSubmit={handleSubmit}>
           <div className="contenido">
             <div className="preview">
               <div className="texto">
-                <p>let user = </p>
-                <p>email: {email.value}</p>
-                <p>password: {"*".repeat(password.value.length)}</p>
+                <p>
+                  <span className="green">let</span> user = &#123;
+                </p>
+                <p>
+                  email: <span>'{email}'</span>,
+                </p>
+                <p>
+                  password: <span>'{"*".repeat(password.length)}'</span>&#125;
+                </p>
               </div>
             </div>
 
             <div className="input-box top">
               <img src={group5} alt="group5"></img>
               <input
-                placeholder="pepito@email.com"
-                {...email}
-                required
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                placeholder={email}
                 type="email"
+                maxLength={32}
+                required
               ></input>
             </div>
 
             <div className="input-box">
               <img src={group8} alt="group5"></img>
               <input
-                placeholder="******"
-                {...password}
-                required
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={password}
                 type="password"
+                maxLength={20}
+                required
               ></input>
             </div>
 
@@ -77,8 +85,8 @@ function Login() {
           <div className="button-container">
             <button className="submitButton top">LOGIN</button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 }
