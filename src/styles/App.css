@@ -159,6 +159,17 @@
   padding: 1rem;
 }
 
+.texto {
+  line-height: 20px;
+  font-size: 12px;
+}
+.texto span {
+  color: #EF88BD;
+}
+.texto .green {
+  color: #01FF1A;
+}
+
 .input-box {
   border: #FFF solid 1px;
   margin-bottom: 0.5rem;
