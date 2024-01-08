@@ -3,22 +3,15 @@
   background: linear-gradient(154deg, $color-principal3 0%, $color-principal2 124.22%)
   width: 19.6875rem
   border-radius: 25px
-  padding: 1rem
+  padding: 0.94rem
   display: flex
   flex-direction: column
 
 .navbar
   display: flex
   justify-content: flex-end
-
-.navbar-button
-  border: solid 1px $color-principal1
-  border-radius: 10px
-  width: 2rem
-  height: 2rem
-  display: flex
-  justify-content: center
-  align-items: center
+  img
+    margin-left: 10px
 
 .linea
   border-bottom: solid $color-principal1 1px
@@ -43,24 +36,31 @@
     padding: 1rem 0.6rem 1rem 0.9rem
   
 .contenido
+  font-family: 'Roboto'
   border: solid $color-principal1 1px
   border-radius: 0 15px 15px 15px
-  padding: 1rem
+  padding: 0.94rem
   flex-grow: 1
 
 .preview
   border: solid $color-principal1 1px
   border-radius: 0 25px 25px 25px
   background: $color-principal3
-  padding: 1rem
+  padding: 0.94rem
 
 .texto
+  font-size: 14px 
   line-height: 20px
-  font-size: 12px 
   span
-    color: #EF88BD
+    color: $color-secundario1
   .green
-    color: #01FF1A
+    color: $color-secundario2
+  .orange
+    color: $color-secundario3
+  .pink
+    color: $color-secundario1
+  .blue
+    color: $color-secundario4
 
 .input-box
   border: $color-principal1 solid 1px
@@ -88,7 +88,7 @@
   text-align: right
   font-size: 0.75rem
   margin-right: 0.5rem
-  color: #FFB800
+  color: $color-secundario3
 
 .button-container
   display: flex

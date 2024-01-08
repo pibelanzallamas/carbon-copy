@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import vector from "../assets/Vector.svg";
+import group33 from "../assets/Group33.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group3 from "../assets/Group3.svg";
 import group4 from "../assets/Group4.svg";
@@ -29,9 +29,7 @@ function Register() {
       <form onSubmit={handleSubmit}>
         <div className="box">
           <div className="navbar">
-            <div className="navbar-button">
-              <img src={vector} alt="vector"></img>
-            </div>
+            <img src={group33} alt="vector"></img>
           </div>
 
           <div className="linea"></div>
