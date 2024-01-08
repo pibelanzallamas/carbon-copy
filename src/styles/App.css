@@ -45,10 +45,8 @@
 .copete {
   width: 19.6875rem;
   margin-top: 0.94rem;
-}
-
-.texto-copete, .boton-copete {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
 }
 
 .texto-copete p {
@@ -62,19 +60,11 @@
   height: 2.25rem;
 }
 
-.boton-copete {
-  width: 60%;
-  height: 4.7rem;
-  vertical-align: top;
-}
-
 .boton {
-  width: 10.875rem;
-  height: 3.75rem;
+  width: 10.87rem;
+  height: 3.7rem;
   border: 1px solid white;
   border-radius: 25px;
-  margin-top: 0.2rem;
-  margin-left: 0.5rem;
   display: flex;
   align-items: center;
   padding: 0 0.94rem;
@@ -89,10 +79,65 @@
 }
 
 .logoP5 {
+  background-image: url("../assets/logoP5_color_5.svg");
+  width: 119px;
+  height: 119px;
   position: absolute;
   bottom: 0;
 }
 
+@media (min-width: 700px) {
+  .portada-welcome {
+    width: 54rem;
+    height: 27rem;
+  }
+  .pinA {
+    width: 8.6875rem;
+    height: 8.6875rem;
+    margin-top: 2.5rem;
+    margin-left: 42.5rem;
+  }
+  .pinB {
+    width: 12.5rem;
+    height: 12.5rem;
+    margin-top: -6.25rem;
+    margin-left: 47.75rem;
+  }
+  .logo {
+    width: 31.25rem;
+    height: 12.8125rem;
+    margin-top: 11.81rem;
+    margin-left: 1.87rem;
+  }
+  .copete {
+    width: 54rem;
+    margin-top: 2.19rem;
+  }
+  .texto-copete p {
+    width: auto;
+  }
+  .texto-copete img {
+    width: 11.0625rem;
+    height: 4.0625rem;
+  }
+  .boton {
+    width: 18rem;
+    height: 5.75rem;
+    padding: 0 2rem;
+  }
+  .group9 {
+    margin-left: -14%;
+  }
+  .logoP5 {
+    background-image: url("../assets/logo_plataforma5_color.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 194.484px;
+    height: 46.377px;
+    bottom: 3.94rem;
+    right: 18.3rem;
+  }
+}
 .box {
   min-height: 85vh;
   background: linear-gradient(154deg, #0047FF 0%, #DADADA 124.22%);
@@ -151,11 +196,15 @@
   border-radius: 0 25px 25px 25px;
   background: #0047FF;
   padding: 0.94rem;
+  min-height: 117px;
 }
 
 .texto {
   font-size: 14px;
   line-height: 20px;
+}
+.texto p {
+  font-family: "Roboto";
 }
 .texto span {
   color: #EF88BD;

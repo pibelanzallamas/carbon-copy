@@ -47,7 +47,7 @@ function Register() {
             <div className="preview">
               <div className="texto">
                 <p>
-                  <span className="green">let</span> user = &#123;name:
+                  <span className="green">let</span> user = &#123; name:
                   <span> '{name}'</span>,
                 </p>
                 <p>
