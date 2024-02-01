@@ -4,11 +4,13 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import ForgotPass from "./components/ForgotPass";
 import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 import "./styles/App.css";
 
 function App() {
   return (
     <Routes>
+      <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Welcome />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
