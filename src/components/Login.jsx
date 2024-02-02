@@ -6,21 +6,38 @@ import group5 from "../assets/Group5.svg";
 import group8 from "../assets/Group8.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { alerts } from "../utils/alerts";
+import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("kath@p5.com");
   const [password, setPassword] = useState("********");
 
-  function handleSubmit(e) {
+  function handleLogin(e) {
     e.preventDefault();
-    alerts("Bienvenido!", `Hola usuario ingreso con exito.`, "success");
-    navigate("/home");
+    axios
+      .post("http://localhost:3000/api/users/login", { email, password })
+      .then((user) => {
+        console.log(user.data);
+        alerts(
+          "Usuario logueado",
+          `El usuario ${user.data.name} ha sido logueado con exito.`,
+          "success"
+        );
+        navigate("/home");
+      })
+      .catch((err) => {
+        alerts(
+          "Usuario no logueado",
+          `El usuario no ha sido logueado con exito.`,
+          "danger"
+        );
+      });
   }
 
   return (
     <div className="all">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <div className="box">
           <div className="navbar">
             <img src={group33} alt="vector"></img>

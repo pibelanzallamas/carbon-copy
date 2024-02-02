@@ -7,6 +7,7 @@ import group5 from "../assets/Group5.svg";
 import group8 from "../assets/Group8.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { alerts } from "../utils/alerts";
+import axios from "axios";
 
 function Register() {
   const navigate = useNavigate();
@@ -14,19 +15,34 @@ function Register() {
   const [email, setEmail] = useState("kath@p5.com");
   const [password, setPassword] = useState("********");
 
-  function handleSubmit(e) {
+  function handleRegister(e) {
     e.preventDefault();
-    alerts(
-      "Usuario creado",
-      `El usuario ${name.value} ha sido creado con exito.`,
-      "success"
-    );
-    navigate("/login");
+    axios
+      .post("http://localhost:3000/api/users/register", {
+        name,
+        email,
+        password,
+      })
+      .then((user) => {
+        alerts(
+          "Usuario creado",
+          `El usuario ${user.data.name} ha sido creado con exito.`,
+          "success"
+        );
+        navigate("/login");
+      })
+      .catch((err) => {
+        alerts(
+          "Usuario no creado",
+          `El usuario ${name} no ha sido creado con exito.`,
+          "danger"
+        );
+      });
   }
 
   return (
     <div className="all">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleRegister}>
         <div className="box">
           <div className="navbar">
             <img src={group33} alt="vector"></img>
