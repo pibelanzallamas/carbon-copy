@@ -28,7 +28,7 @@ function Login() {
       .catch((err) => {
         alerts(
           "Usuario no logueado",
-          `El usuario no ha sido logueado con exito.`,
+          `El usuario que ingreso no existe.`,
           "danger"
         );
       });

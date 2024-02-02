@@ -4,7 +4,6 @@ import group32 from "../assets/Group32.svg";
 import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
-import group29 from "../assets/Group29.svg";
 
 function NotFound() {
   return (
@@ -26,7 +25,10 @@ function NotFound() {
 
         <p className="subtitulo top"> Give style to your code</p>
 
-        <p className="top">Lo siento. Página no encontrada.</p>
+        <div className="top" style={{ margin: "8rem auto" }}>
+          <p style={{ fontSize: "17px" }}> Lo siento. Página no encontrada.</p>
+          <p style={{ fontSize: "34px", textAlign: "center" }}>😵</p>
+        </div>
       </div>
     </div>
   );

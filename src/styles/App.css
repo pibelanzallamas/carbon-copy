@@ -300,6 +300,19 @@
   border: 1px solid #FFF;
 }
 
+.profile-pic-figure {
+  width: 35%;
+  margin: 0 auto;
+}
+
+.profile-pic-figure img {
+  width: 100%;
+  height: auto;
+  min-width: 100px;
+  border: 5px double gray;
+  border-radius: 50%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -309,6 +322,7 @@
 }
 
 a {
+  color: inherit;
   text-decoration: none;
 }
 
