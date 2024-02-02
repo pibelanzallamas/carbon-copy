@@ -26,7 +26,7 @@ function Register() {
       .then((user) => {
         alerts(
           "Usuario creado",
-          `El usuario ${user.data.name} ha sido creado con exito.`,
+          `El usuario ${user.data[0].name} ha sido creado con exito.`,
           "success"
         );
         navigate("/login");

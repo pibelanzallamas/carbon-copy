@@ -18,7 +18,6 @@ function Login() {
     axios
       .post("http://localhost:3000/api/users/login", { email, password })
       .then((user) => {
-        console.log(user.data);
         alerts(
           "Usuario logueado",
           `El usuario ${user.data.name} ha sido logueado con exito.`,
