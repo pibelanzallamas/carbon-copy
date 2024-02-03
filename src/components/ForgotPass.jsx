@@ -13,16 +13,27 @@ function ForgotPass() {
 
   function handleForgot(e) {
     e.preventDefault();
+    let [password, id] = [];
 
     axios
       .post(`http://localhost:3000/api/users/forgot/${email}`)
-      .then((conf) => {
-        alert(conf.data);
+      .then((user) => {
+        [password, id] = user.data;
         alerts(
           "Email enviado",
           "Se envió un codigo de recuperación a su correo.",
           "success"
         );
+        axios
+          .put(`http://localhost:3000/api/users/${id}`, {
+            password,
+          })
+          .then((mod) => {
+            console.log(mod);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         navigate("/login");
       })
       .catch((err) => {
@@ -31,6 +42,7 @@ function ForgotPass() {
           "El email que ingreso no esta registrado.",
           "warning"
         );
+        console.log(err);
       });
   }
 
