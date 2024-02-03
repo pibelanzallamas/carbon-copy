@@ -29,7 +29,7 @@ function Login() {
         alerts(
           "Usuario no logueado",
           `El usuario que ingreso no existe.`,
-          "danger"
+          "warning"
         );
       });
   }

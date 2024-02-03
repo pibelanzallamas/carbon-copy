@@ -35,7 +35,7 @@ function Register() {
         alerts(
           "Usuario no creado",
           `El usuario ${name} no ha sido creado con exito.`,
-          "danger"
+          "warning"
         );
       });
   }

@@ -5,20 +5,38 @@ import group3 from "../assets/Group3.svg";
 import group5 from "../assets/Group5.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { alerts } from "../utils/alerts";
+import axios from "axios";
 
 function ForgotPass() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("kath@p5.com");
 
-  function handleSubmit(e) {
+  function handleForgot(e) {
     e.preventDefault();
-    alerts("Bienvenido!", "Email enviado", "success");
-    navigate("/login");
+
+    axios
+      .post(`http://localhost:3000/api/users/forgot/${email}`)
+      .then((conf) => {
+        alert(conf.data);
+        alerts(
+          "Email enviado",
+          "Se envió un codigo de recuperación a su correo.",
+          "success"
+        );
+        navigate("/login");
+      })
+      .catch((err) => {
+        alerts(
+          "Email no enviado",
+          "El email que ingreso no esta registrado.",
+          "warning"
+        );
+      });
   }
 
   return (
     <div className="all">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleForgot}>
         <div className="box">
           <div className="navbar">
             <img src={group33} alt="vector"></img>

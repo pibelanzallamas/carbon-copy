@@ -7,6 +7,8 @@ import carbonLogo from "../assets/carbonLogo.svg";
 import group29 from "../assets/Group29.svg";
 
 function Home() {
+  const [codigo, setCodigo] = useState("ingrese codigo aquí");
+
   return (
     <div className="all">
       <div className="box">
