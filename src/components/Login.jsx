@@ -5,6 +5,8 @@ import group3 from "../assets/Group3.svg";
 import group5 from "../assets/Group5.svg";
 import group8 from "../assets/Group8.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../state/userState";
 import { alerts } from "../utils/alerts";
 import axios from "axios";
 
@@ -12,6 +14,7 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("kath@p5.com");
   const [password, setPassword] = useState("********");
+  const dispatch = useDispatch();
 
   function handleLogin(e) {
     e.preventDefault();
@@ -23,6 +26,7 @@ function Login() {
           `El usuario ${user.data.name} ha sido logueado con exito.`,
           "success"
         );
+        dispatch(setUser(user.data));
         navigate("/home");
       })
       .catch((err) => {
