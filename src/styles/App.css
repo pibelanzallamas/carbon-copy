@@ -86,58 +86,6 @@
   bottom: 0;
 }
 
-@media (min-width: 700px) {
-  .portada-welcome {
-    width: 54rem;
-    height: 27rem;
-  }
-  .pinA {
-    width: 8.6875rem;
-    height: 8.6875rem;
-    margin-top: 2.5rem;
-    margin-left: 42.5rem;
-  }
-  .pinB {
-    width: 12.5rem;
-    height: 12.5rem;
-    margin-top: -6.25rem;
-    margin-left: 47.75rem;
-  }
-  .logo {
-    width: 31.25rem;
-    height: 12.8125rem;
-    margin-top: 11.81rem;
-    margin-left: 1.87rem;
-  }
-  .copete {
-    width: 54rem;
-    margin-top: 2.19rem;
-  }
-  .texto-copete p {
-    width: auto;
-  }
-  .texto-copete img {
-    width: 11.0625rem;
-    height: 4.0625rem;
-  }
-  .boton {
-    width: 18rem;
-    height: 5.75rem;
-    padding: 0 2rem;
-  }
-  .group9 {
-    margin-left: -14%;
-  }
-  .logoP5 {
-    background-image: url("../assets/logo_plataforma5_color.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 194.484px;
-    height: 46.377px;
-    bottom: 3.94rem;
-    right: 18.3rem;
-  }
-}
 .box {
   min-height: 85vh;
   background: linear-gradient(154deg, #0047FF 0%, #DADADA 124.22%);
@@ -298,6 +246,20 @@
   padding: 0.94rem;
   flex-grow: 1;
   border: 1px solid #FFF;
+}
+
+.select {
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 40px;
+  font-size: 13px;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.select:focus {
+  outline: none;
 }
 
 .profile-pic-figure {

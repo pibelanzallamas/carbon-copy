@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import group33 from "../assets/Group33.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group3 from "../assets/Group3.svg";
@@ -7,7 +8,6 @@ import group5 from "../assets/Group5.svg";
 import group8 from "../assets/Group8.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { alerts } from "../utils/alerts";
-import axios from "axios";
 
 function Register() {
   const navigate = useNavigate();
@@ -64,13 +64,14 @@ function Register() {
               <div className="texto">
                 <p>
                   <span className="green">let</span> user = &#123; name:
-                  <span> '{name}'</span>,
+                  <span> '{name.substring(0, 25)}'</span>,
                 </p>
                 <p>
-                  email: <span>'{email}'</span>,
+                  email: <span>'{email.substring(0, 25)}'</span>,
                 </p>
                 <p>
-                  password: <span>'{"*".repeat(password.length)}'</span>
+                  password:{" "}
+                  <span>'{"*".repeat(password.substring(0, 10).length)}'</span>
                   &#125;
                 </p>
               </div>
@@ -84,7 +85,7 @@ function Register() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder={name}
                 type="text"
-                maxLength={24}
+                maxLength={40}
                 required
               ></input>
             </div>
@@ -95,7 +96,7 @@ function Register() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={email}
                 type="email"
-                maxLength={32}
+                maxLength={60}
                 required
               ></input>
             </div>

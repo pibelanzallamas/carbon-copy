@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import ForgotPass from "./components/ForgotPass";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
+import Profile from "./components/Profile";
 import "./styles/App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot" element={<ForgotPass />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/user/:id" element={<Profile />} />
     </Routes>
   );
 }

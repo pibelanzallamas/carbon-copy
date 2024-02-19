@@ -1,17 +1,22 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import group31 from "../assets/Group31.svg";
 import group32 from "../assets/Group32.svg";
 import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group29 from "../assets/Group29.svg";
+import useInput from "../hooks/useInput";
 
 function Home() {
-  const [codigo, setCodigo] = useState("ingrese codigo aquí");
   const user = useSelector((state) => state.user);
-  console.log(user);
+  const style = useInput("");
+  const format = useInput("");
+  const color = useInput("");
+  const [codigo, setCodigo] = useState("ingrese codigo aquí");
+
   return (
     <div className="all">
       <div className="box">
@@ -22,7 +27,13 @@ function Home() {
 
           <img src={group33} alt="vector"></img>
 
-          {user.id ? <img src={group34} alt="vector"></img> : <></>}
+          {user.id ? (
+            <Link to={`/user/${user.id}`}>
+              <img src={group34} alt="vector"></img>
+            </Link>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="linea"></div>
@@ -31,12 +42,26 @@ function Home() {
 
         <p className="subtitulo top"> Give style to your code</p>
 
-        <div className="input-box home-boxes top">Style</div>
-        <div className="input-box home-boxes">Format</div>
-        <div className="input-box home-boxes">
-          <div className="color-selector"></div>
-        </div>
-        <div className="contenido-home">
+        <select {...style} className="select top">
+          <option>Style</option>
+          <option value="modern">Modern Kid</option>
+          <option value="old">Old Times</option>
+          <option value="cosmic">Cosmic</option>
+        </select>
+        <select {...format} className="select">
+          <option>Format</option>
+          <option value="Javascript">Javascript</option>
+          <option value="Python">Python</option>
+          <option value="SQL">SQL</option>
+        </select>
+        <select {...color} className="select">
+          <option>Color</option>
+          <option value="Naranja">Naranja</option>
+          <option value="Azul">Azul</option>
+          <option value="Verde">Verde</option>
+        </select>
+
+        <div className="contenido-home top">
           <div className="code-box">
             <img src={group29} alt="vector"></img>
             <div className="texto top">

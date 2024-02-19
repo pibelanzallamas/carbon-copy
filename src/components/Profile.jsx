@@ -4,9 +4,13 @@ import group32 from "../assets/Group32.svg";
 import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function NotFound() {
+function Profile() {
+  const user = useSelector((state) => state.user);
+  const { id } = useParams();
+
   return (
     <div className="all">
       <div className="box">
@@ -27,14 +31,11 @@ function NotFound() {
         </Link>
 
         <p className="subtitulo top"> Give style to your code</p>
-
-        <div className="top" style={{ margin: "8rem auto" }}>
-          <p style={{ fontSize: "17px" }}> Lo siento. Página no encontrada.</p>
-          <p style={{ fontSize: "34px", textAlign: "center" }}>😵</p>
-        </div>
+        <p className="subtitulo top"> Hola usuario {user.name}</p>
+        <p className="subtitulo top"> de id {id}</p>
       </div>
     </div>
   );
 }
 
-export default NotFound;
+export default Profile;

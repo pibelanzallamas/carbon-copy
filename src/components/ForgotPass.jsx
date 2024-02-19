@@ -10,20 +10,17 @@ import axios from "axios";
 function ForgotPass() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("kath@p5.com");
+  let id,
+    password = 0;
 
   function handleForgot(e) {
     e.preventDefault();
-    let [password, id] = [];
 
     axios
       .post(`http://localhost:3000/api/users/forgot/${email}`)
       .then((user) => {
-        [password, id] = user.data;
-        alerts(
-          "Email enviado",
-          "Se envió un codigo de recuperación a su correo.",
-          "success"
-        );
+        [id, password] = user.data;
+
         axios
           .put(`http://localhost:3000/api/users/${id}`, {
             password,
@@ -34,6 +31,13 @@ function ForgotPass() {
           .catch((err) => {
             console.log(err);
           });
+
+        alerts(
+          "Email enviado",
+          "Se envió un codigo de recuperación a su correo.",
+          "success"
+        );
+
         navigate("/login");
       })
       .catch((err) => {
@@ -42,7 +46,7 @@ function ForgotPass() {
           "El email que ingreso no esta registrado.",
           "warning"
         );
-        console.log(err);
+        // console.log(err);
       });
   }
 
@@ -72,7 +76,7 @@ function ForgotPass() {
                   <span className="green">let</span> user = &#123;
                 </p>
                 <p>
-                  email: <span>'{email}'</span>&#125;
+                  email: <span>'{email.substring(0, 27)}'</span>&#125;
                 </p>
               </div>
             </div>
@@ -83,7 +87,7 @@ function ForgotPass() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={email}
                 type="email"
-                maxLength={32}
+                maxLength={60}
                 required
               ></input>
             </div>

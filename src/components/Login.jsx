@@ -21,18 +21,18 @@ function Login() {
     axios
       .post("http://localhost:3000/api/users/login", { email, password })
       .then((user) => {
+        dispatch(setUser(user.data));
         alerts(
           "Usuario logueado",
           `El usuario ${user.data.name} ha sido logueado con exito.`,
           "success"
         );
-        dispatch(setUser(user.data));
         navigate("/home");
       })
       .catch((err) => {
         alerts(
           "Usuario no logueado",
-          `El usuario que ingreso no existe.`,
+          `No se encontro el usuario ingresado.`,
           "warning"
         );
       });
@@ -64,7 +64,7 @@ function Login() {
                   <span className="green">let</span> user = &#123;
                 </p>
                 <p>
-                  email: <span>'{email}'</span>,
+                  email: <span>'{email.substring(0, 27)}'</span>,
                 </p>
                 <p>
                   password: <span>'{"*".repeat(password.length)}'</span>&#125;
@@ -80,7 +80,7 @@ function Login() {
                 }}
                 placeholder={email}
                 type="email"
-                maxLength={32}
+                maxLength={60}
                 required
               ></input>
             </div>
