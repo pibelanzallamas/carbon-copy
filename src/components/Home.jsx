@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import group31 from "../assets/Group31.svg";
 import group32 from "../assets/Group32.svg";
 import group33 from "../assets/Group33.svg";
@@ -66,7 +66,7 @@ function Home() {
             <img src={group29} alt="vector"></img>
             <div className="texto top">
               <p>
-                <span className="green">let</span> members = name:
+                <span className="green">let</span> members = &#123; name:
                 <span className="pink">'Dylan'</span>, age:
                 <span className="blue">22</span>, area:{" "}
                 <span className="pink">'Content'</span>, name:
@@ -75,13 +75,15 @@ function Home() {
                 <span className="pink">'Intro'</span>, name:
                 <span className="pink">'Mar'</span> , age:{" "}
                 <span className="blue">24</span>, area:{" "}
-                <span className="pink">'Bootcamp'</span>
+                <span className="pink">'Bootcamp'</span> &#125;
               </p>
               <br />
               <p>
                 <span className="green">const</span> plataforma = members =&#62;
+                &#123;
                 <span className="orange"> members</span>.map &#40;
                 <span className="orange">member</span> =&#62; member.name&#41;
+                &#125;
               </p>
             </div>
           </div>

@@ -6,10 +6,7 @@ function useInput(property) {
     setValue(event.target.value);
   }
 
-  function clearInput() {
-    setValue("");
-  }
-  return { value, onChange, clearInput };
+  return { value, onChange };
 }
 
 export default useInput;
