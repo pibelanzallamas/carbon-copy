@@ -95,10 +95,14 @@ function Login() {
                 required
               ></input>
             </div>
-
-            <p className="forgotPassword top">
-              <Link to={"/forgot"}>Forgot your password</Link>
-            </p>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <p className="forgotPassword top">
+                <Link to="/register">Register</Link>
+              </p>
+              <p className="forgotPassword top">
+                <Link to={"/forgot"}>Forgot your password</Link>
+              </p>
+            </div>
           </div>
           <div className="button-container">
             <button className="submitButton top">LOGIN</button>

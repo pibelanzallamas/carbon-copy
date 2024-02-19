@@ -93,7 +93,7 @@ function ForgotPass() {
             </div>
 
             <p className="forgotPassword top">
-              <Link to="/register">Register</Link>
+              <Link to="/login">Log in</Link>
             </p>
           </div>
           <div className="button-container">
