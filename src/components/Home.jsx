@@ -1,32 +1,7 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/ace";
-import "ace-builds/src-noconflict/mode-sql";
-import "ace-builds/src-noconflict/ext-language_tools";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/mode-html";
-import "ace-builds/src-noconflict/mode-css";
-import "ace-builds/src-noconflict/mode-apex";
-import "ace-builds/src-noconflict/mode-json";
-import "ace-builds/src-noconflict/mode-xml";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/mode-python";
-import "ace-builds/src-noconflict/mode-ruby";
-import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/mode-php";
-import "ace-builds/src-noconflict/mode-curly";
-import "ace-builds/src-noconflict/theme-dawn";
-import "ace-builds/src-noconflict/theme-monokai";
-import "ace-builds/src-noconflict/theme-github";
-import "ace-builds/src-noconflict/theme-solarized_light";
-import "ace-builds/src-noconflict/theme-tomorrow_night";
-import "ace-builds/src-noconflict/theme-twilight";
-import "ace-builds/src-noconflict/theme-xcode";
-import "ace-builds/src-noconflict/theme-chaos";
-import "ace-builds/src-noconflict/theme-dracula";
-import "ace-builds/src-noconflict/theme-merbivore";
-import "ace-builds/src-noconflict/theme-vibrant_ink";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useInput from "../hooks/useInput";
@@ -47,16 +22,74 @@ function Home() {
     }
 }`);
 
-  function handleChange(newCode) {
-    setCode(newCode);
+  function handleLike() {
+    let sid;
+    let uid = user.id;
+    axios
+      .post("http://localhost:3000/api/styles/register", {
+        theme: theme.value,
+        mode: mode.value,
+        color: color.value,
+      })
+      .then((ok) => {
+        sid = ok.data.id;
+        console.log(sid, uid);
+        axios
+          .post("http://localhost:3000/api/favorites/register", {
+            uid,
+            sid,
+          })
+          .then((ok) => {
+            console.log(ok);
+            alert("fav ok");
+          })
+          .catch((err) => {
+            alert("error");
+          });
+      })
+      .catch((err) => {
+        alert("error");
+      });
+  }
+
+  function handleDownload() {
+    let imagen = document.querySelector(".contenido-home");
+    let canvas = document.createElement("canvas");
+    canvas.width = imagen.offsetWidth;
+    canvas.height = imagen.offsetHeight;
+
+    let ctx = canvas.getContext("2d");
+
+    ctx.drawWindow(
+      window,
+      imagen.offsetLeft,
+      imagen.offsetTop,
+      imagen.offsetWidth,
+      imagen.offsetHeight,
+      "rgb(255,255,255)"
+    );
+
+    let dataUrl = canvas.toDataURL();
+
+    let img = new Image();
+    img.src = dataUrl;
+
+    let link = documents.createElement("a");
+    link.href = img.src;
+    link.download = "mi_imagen.png";
+    link.click();
   }
 
   return (
     <div className="all">
       <div className="box">
         <div className="navbar">
-          <img src={group31} alt="vector"></img>
-          <img src={group32} alt="vector"></img>
+          <div className="download" onClick={handleDownload}>
+            <img src={group31} alt="vector"></img>
+          </div>
+          <div className="like-button" onClick={handleLike}>
+            <img src={group32} alt="vector"></img>
+          </div>
           <img src={group33} alt="vector"></img>
           {user.id ? (
             <Link to={`/user/${user.id}`}>
@@ -112,20 +145,22 @@ function Home() {
           className="contenido-home top"
           style={{ backgroundColor: color.value }}
         >
-          <div className="ace-cont">
-            <AceEditor
-              mode={mode.value}
-              theme={theme.value}
-              value={code}
-              onChange={handleChange}
-              height="30vh"
-              showGutter={false} //n d linea
-              highlightActiveLine={false}
-              enableBasicAutocompletion={true}
-              enableLiveAutocompletion={false} //sugest
-              style={{ fontSize: "10px" }}
-            />
-          </div>
+          <AceEditor
+            className="ace"
+            mode={mode.value}
+            theme={theme.value}
+            value={code}
+            onChange={(newCode) => {
+              setCode(newCode);
+            }}
+            height="30vh"
+            width="100%"
+            showGutter={false} //n d linea
+            highlightActiveLine={false}
+            enableBasicAutocompletion={false}
+            enableLiveAutocompletion={false} //sugest
+            style={{ fontSize: "10px" }}
+          />
         </div>
       </div>
     </div>
