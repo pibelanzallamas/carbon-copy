@@ -24,17 +24,13 @@ function Register() {
         password,
       })
       .then((user) => {
-        alerts(
-          "Usuario creado",
-          `El usuario ${user.data[0].name} ha sido creado con exito.`,
-          "success"
-        );
+        alerts("Exito!", `El usuario ha sido creado correctamente.`, "success");
         navigate("/login");
       })
       .catch((err) => {
         alerts(
-          "Usuario no creado",
-          `El usuario ${name} no ha sido creado con exito.`,
+          "Oh oh!",
+          `El usuario no ha sido creado correctamente.`,
           "warning"
         );
       });

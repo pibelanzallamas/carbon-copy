@@ -265,6 +265,7 @@ a:visited {
 
 input {
   caret-color: #FFB800;
+  color: #FFF;
 }
 
 input:focus {

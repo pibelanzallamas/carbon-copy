@@ -30,11 +30,7 @@ function Login() {
         navigate("/home");
       })
       .catch((err) => {
-        alerts(
-          "Usuario no logueado",
-          `No se encontro el usuario ingresado.`,
-          "warning"
-        );
+        alerts("Atención!", `No se encontro el usuario ingresado.`, "warning");
       });
   }
 

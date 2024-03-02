@@ -8,10 +8,9 @@ import { alerts } from "../utils/alerts";
 import axios from "axios";
 
 function ForgotPass() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("kath@p5.com");
-  let id,
-    password = 0;
+  const navigate = useNavigate();
+  let id, password;
 
   function handleForgot(e) {
     e.preventDefault();
@@ -20,25 +19,17 @@ function ForgotPass() {
       .post(`http://localhost:3000/api/users/forgot/${email}`)
       .then((user) => {
         [id, password] = user.data;
-
         axios
-          .put(`http://localhost:3000/api/users/${id}`, {
-            password,
-          })
+          .put(`http://localhost:3000/api/users/${id}`, { password })
           .then((mod) => {
-            console.log(mod);
+            alerts(
+              "Email enviado",
+              "Se envió un codigo de recuperación a su correo.",
+              "success"
+            );
+            navigate("/login");
           })
-          .catch((err) => {
-            console.log(err);
-          });
-
-        alerts(
-          "Email enviado",
-          "Se envió un codigo de recuperación a su correo.",
-          "success"
-        );
-
-        navigate("/login");
+          .catch((err) => console.log(err));
       })
       .catch((err) => {
         alerts(
@@ -46,7 +37,6 @@ function ForgotPass() {
           "El email que ingreso no esta registrado.",
           "warning"
         );
-        // console.log(err);
       });
   }
 
