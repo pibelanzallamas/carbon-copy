@@ -23,8 +23,8 @@ function Login() {
       .then((user) => {
         dispatch(setUser(user.data));
         alerts(
-          "Usuario logueado",
-          `El usuario ${user.data.name} ha sido logueado con exito.`,
+          `Bienvenido ${user.data.name}!`,
+          `El usuario ha sido logueado con exito.`,
           "success"
         );
         navigate("/home");

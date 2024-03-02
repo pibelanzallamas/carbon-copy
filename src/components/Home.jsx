@@ -34,6 +34,7 @@ import useInput from "../hooks/useInput";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group31 from "../assets/Group31.svg";
 import group32 from "../assets/Group32.svg";
+import group32b from "../assets/Group32D.svg";
 import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
 
@@ -47,11 +48,48 @@ function Home() {
         System.debug('Hello, world!');
     }
 }`);
+  const [like, setLike] = useState(false);
+
+  useEffect(() => {
+    setLike(false);
+  }, [theme.value, mode.value, color.value]);
+
+  function handleDislike() {
+    if (!user.id) return alert("debe ingresar primero");
+    let uid = user.id;
+    let sid;
+
+    axios
+      .get("http://localhost:3000/api/styles/", {
+        params: {
+          theme: theme.value,
+          mode: mode.value,
+          color: color.value,
+        },
+      })
+      .then((ok) => {
+        sid = ok.data.id;
+        axios
+          .delete("http://localhost:3000/api/favorites/", {
+            params: { sid, uid },
+          })
+          .then((ok) => {
+            alert("favorito eliminado");
+            setLike(false);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => console.log(err));
+  }
 
   function handleLike() {
+    if (!user.id) return alert("debe ingresar primero");
     let sid,
       uid = user.id;
-    axios
+
+    axios //guarda el estilo
       .post("http://localhost:3000/api/styles/register", {
         theme: theme.value,
         mode: mode.value,
@@ -59,14 +97,16 @@ function Home() {
       })
       .then((ok) => {
         sid = ok.data[0].id;
-        axios
+        axios // guarda el estilo nuevo en mis favs
           .post("http://localhost:3000/api/favorites/register", {
             uid,
             sid,
           })
           .then((ok) => {
-            if (ok.data[1]) alert("guardado en favs");
-            else alert("ya esta en favs");
+            if (ok.data[1]) {
+              alert("guardado en favs");
+              setLike(true);
+            }
           })
           .catch((err) => alert("error"));
       })
@@ -108,9 +148,15 @@ function Home() {
           <div className="download" onClick={handleDownload}>
             <img src={group31} alt="vector"></img>
           </div>
-          <div className="like-button" onClick={handleLike}>
-            <img src={group32} alt="vector"></img>
-          </div>
+          {like ? (
+            <div className="like-button" onClick={handleDislike}>
+              <img src={group32b} alt="vector"></img>
+            </div>
+          ) : (
+            <div className="like-button" onClick={handleLike}>
+              <img src={group32} alt="vector"></img>
+            </div>
+          )}
           <img src={group33} alt="vector"></img>
           {user.id ? (
             <Link to={`/user/${user.id}`}>
