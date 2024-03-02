@@ -2,6 +2,32 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/ace";
+import "ace-builds/src-noconflict/mode-sql";
+import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-html";
+import "ace-builds/src-noconflict/mode-css";
+import "ace-builds/src-noconflict/mode-apex";
+import "ace-builds/src-noconflict/mode-json";
+import "ace-builds/src-noconflict/mode-xml";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-ruby";
+import "ace-builds/src-noconflict/mode-c_cpp";
+import "ace-builds/src-noconflict/mode-php";
+import "ace-builds/src-noconflict/mode-curly";
+import "ace-builds/src-noconflict/theme-dawn";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-solarized_light";
+import "ace-builds/src-noconflict/theme-tomorrow_night";
+import "ace-builds/src-noconflict/theme-twilight";
+import "ace-builds/src-noconflict/theme-xcode";
+import "ace-builds/src-noconflict/theme-chaos";
+import "ace-builds/src-noconflict/theme-dracula";
+import "ace-builds/src-noconflict/theme-merbivore";
+import "ace-builds/src-noconflict/theme-vibrant_ink";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useInput from "../hooks/useInput";
@@ -23,8 +49,8 @@ function Home() {
 }`);
 
   function handleLike() {
-    let sid;
-    let uid = user.id;
+    let sid,
+      uid = user.id;
     axios
       .post("http://localhost:3000/api/styles/register", {
         theme: theme.value,
@@ -32,24 +58,19 @@ function Home() {
         color: color.value,
       })
       .then((ok) => {
-        sid = ok.data.id;
-        console.log(sid, uid);
+        sid = ok.data[0].id;
         axios
           .post("http://localhost:3000/api/favorites/register", {
             uid,
             sid,
           })
           .then((ok) => {
-            console.log(ok);
-            alert("fav ok");
+            if (ok.data[1]) alert("guardado en favs");
+            else alert("ya esta en favs");
           })
-          .catch((err) => {
-            alert("error");
-          });
+          .catch((err) => alert("error"));
       })
-      .catch((err) => {
-        alert("error");
-      });
+      .catch((err) => alert("error"));
   }
 
   function handleDownload() {
@@ -116,7 +137,7 @@ function Home() {
           <option value="merbivore">Mervibore</option>
         </select>
         <select {...mode} className="selects">
-          <option selected>Lenguage</option>
+          <option defaultValue={"javascript"}>Lenguage</option>
           <option value="html">HTML</option>
           <option value="css">CSS</option>
           <option value="javascript">Javascript</option>
