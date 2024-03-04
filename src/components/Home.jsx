@@ -30,29 +30,42 @@ import "ace-builds/src-noconflict/theme-merbivore";
 import "ace-builds/src-noconflict/theme-vibrant_ink";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import useInput from "../hooks/useInput";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group31 from "../assets/Group31.svg";
 import group32 from "../assets/Group32.svg";
 import group32b from "../assets/Group32D.svg";
 import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
+import { setUser } from "../state/userState";
+import { setFav } from "../state/favState";
 
 function Home() {
   const user = useSelector((state) => state.user);
-  const theme = useInput("vibrant_ink");
-  const mode = useInput("apex");
-  const color = useInput("#409333");
+  const fav = useSelector((state) => state.fav);
+  const [like, setLike] = useState(false);
+  const [theme, setTheme] = useState("vibrant_ink");
+  const [mode, setMode] = useState("apex");
+  const [color, setColor] = useState("#409333");
+
   const [code, setCode] = useState(`public class HelloWorld {
     public static void main(String[] args) {
         System.debug('Hello, world!');
     }
 }`);
-  const [like, setLike] = useState(false);
 
   useEffect(() => {
+    if (fav.id) {
+      setTheme(fav.style);
+      setMode(fav.format);
+      setColor(fav.color);
+      setLike(true);
+    }
+  }, []);
+
+  //set like
+  useEffect(() => {
     setLike(false);
-  }, [theme.value, mode.value, color.value]);
+  }, [theme, mode, color]);
 
   function handleDislike() {
     if (!user.id) return alert("debe ingresar primero");
@@ -62,9 +75,9 @@ function Home() {
     axios
       .get("http://localhost:3000/api/styles/", {
         params: {
-          theme: theme.value,
-          mode: mode.value,
-          color: color.value,
+          theme: theme,
+          mode: mode,
+          color: color,
         },
       })
       .then((ok) => {
@@ -91,9 +104,9 @@ function Home() {
 
     axios //guarda el estilo
       .post("http://localhost:3000/api/styles/register", {
-        theme: theme.value,
-        mode: mode.value,
-        color: color.value,
+        theme,
+        mode,
+        color,
       })
       .then((ok) => {
         sid = ok.data[0].id;
@@ -169,7 +182,11 @@ function Home() {
         <div className="linea"></div>
         <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
         <p className="subtitulo top"> Give style to your code</p>
-        <select {...theme} className="selects top">
+        <select
+          value={theme}
+          onChange={(e) => setTheme(e.target.value)}
+          className="selects top"
+        >
           <option>Theme</option>
           <option value="dawn">Dawn</option>
           <option value="monokai">Monokai</option>
@@ -182,7 +199,11 @@ function Home() {
           <option value="dracula">Dracula</option>
           <option value="merbivore">Mervibore</option>
         </select>
-        <select {...mode} className="selects">
+        <select
+          value={mode}
+          onChange={(e) => setMode(e.target.value)}
+          className="selects"
+        >
           <option defaultValue={"javascript"}>Lenguage</option>
           <option value="html">HTML</option>
           <option value="css">CSS</option>
@@ -195,7 +216,11 @@ function Home() {
           <option value="c_cpp">C++</option>
           <option value="sql">SQL</option>
         </select>
-        <select {...color} className="selects">
+        <select
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+          className="selects"
+        >
           <option>Color</option>
           <option value="#40E0D0">Turquoise</option>
           <option value="#FF7F50">Coral</option>
@@ -208,14 +233,11 @@ function Home() {
           <option value="#FF00FF">Fuchsia</option>
           <option value="#CCCCFF">Periwinkle</option>
         </select>
-        <div
-          className="contenido-home top"
-          style={{ backgroundColor: color.value }}
-        >
+        <div className="contenido-home top" style={{ backgroundColor: color }}>
           <AceEditor
             className="ace"
-            mode={mode.value}
-            theme={theme.value}
+            mode={mode}
+            theme={theme}
             value={code}
             onChange={(newCode) => {
               setCode(newCode);
