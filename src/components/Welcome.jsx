@@ -18,7 +18,7 @@ function Welcome() {
 
       <div className="copete">
         <div className="texto-copete">
-          <p>Proyecto educativo inspirado en</p>
+          <p>Educational project inspired by</p>
           <img src={logoCarbon1} alt="logo-carbon"></img>
         </div>
         <Link to="/login">

@@ -35,10 +35,12 @@ import "ace-builds/src-noconflict/theme-terminal";
 import "ace-builds/src-noconflict/theme-textmate";
 import "ace-builds/src-noconflict/theme-kuroir";
 import "ace-builds/src-noconflict/theme-ambiance";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setFav } from "../state/favState";
+import { Link, useNavigate } from "react-router-dom";
 import { alerts } from "../utils/alerts";
 import carbonLogo from "../assets/carbonLogo.svg";
+import group29 from "../assets/Group29.svg";
 import group31 from "../assets/Group31.svg";
 import group32 from "../assets/Group32.svg";
 import group32b from "../assets/Group32D.svg";
@@ -47,12 +49,14 @@ import group34 from "../assets/Group34.svg";
 
 function Home() {
   const acce = useRef(null);
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const fav = useSelector((state) => state.fav);
   const [like, setLike] = useState(false);
   const [mode, setMode] = useState("apex");
   const [theme, setTheme] = useState("vibrant_ink");
   const [color, setColor] = useState("#2660A4");
+  const [colorEditor, setColorEditor] = useState("");
   const [code, setCode] = useState(
     `let members = [{name:'Dylan' , 
 age: 22, area: 'Content'}, 
@@ -62,19 +66,26 @@ area: 'Bootcamp'}]
 
 const plataforma = members => 
 members.map (member => 
-member. name)`
+  member. name)`
   );
 
   //detectar color de fondo
   useEffect(() => {
     const editorElement = acce.current.editor.container;
-
     const backgroundColor = window
       .getComputedStyle(editorElement)
       .getPropertyValue("background-color");
 
-    console.log("Color de fondo del tema actual:", backgroundColor);
-  }, [acce]);
+    const [r, g, b] = backgroundColor
+      .substring(4, backgroundColor.length - 1)
+      .split(",")
+      .map(Number);
+    const hexR = r.toString(16).padStart(2, "0");
+    const hexG = g.toString(16).padStart(2, "0");
+    const hexB = b.toString(16).padStart(2, "0");
+
+    setColorEditor(`#${hexR}${hexG}${hexB}`);
+  }, [theme]);
 
   //establecer fav seleccionado
   useEffect(() => {
@@ -122,9 +133,8 @@ member. name)`
 
   //dislikear estilo
   function handleDislike() {
-    if (!user.id) return alert("debe ingresar primero");
-    let uid = user.id;
-    let sid;
+    let sid,
+      uid = user.id;
 
     axios
       .get("http://localhost:3000/api/styles/", {
@@ -137,7 +147,7 @@ member. name)`
             params: { sid, uid },
           })
           .then((ok) => {
-            alerts("Listo!", "Estilos eliminados correctamente!", "success");
+            alerts("Ok!", "Favorite deleted!", "success");
             setLike(false);
           })
           .catch((err) => console.log(err));
@@ -147,32 +157,24 @@ member. name)`
 
   //likear estilo
   function handleLike() {
-    if (!user.id) return alert("debe ingresar primero");
     let sid,
       uid = user.id;
 
-    axios //guarda el estilo
-      .post("http://localhost:3000/api/styles/register", {
-        theme,
-        mode,
-        color,
-      })
+    axios
+      .post("http://localhost:3000/api/styles/register", { theme, mode, color })
       .then((ok) => {
         sid = ok.data[0].id;
-        axios // guarda el estilo nuevo en mis favs
-          .post("http://localhost:3000/api/favorites/register", {
-            uid,
-            sid,
-          })
+        axios
+          .post("http://localhost:3000/api/favorites/register", { uid, sid })
           .then((ok) => {
             if (ok.data[1]) {
-              alerts("Exito!", "Estilos guardados correctamente!", "success");
+              alerts("Exito!", "Favorite saved!", "success");
               setLike(true);
             }
           })
-          .catch((err) => alert("error"));
+          .catch((err) => console.log(err));
       })
-      .catch((err) => alert("error"));
+      .catch((err) => console.log(err));
   }
 
   //descargar imagen
@@ -204,6 +206,33 @@ member. name)`
     link.click();
   }
 
+  //irme de la home
+  function logOut() {
+    const emptyS = {
+      id: null,
+      format: null,
+      style: null,
+      color: null,
+    };
+
+    dispatch(setFav(emptyS));
+  }
+
+  //manejar option with keys
+  const handleKeyDown = (event) => {
+    const { key } = event;
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const selectElement = document.getElementById("colorSelect");
+      const currentIndex = selectElement.selectedIndex;
+      const newIndex = key === "ArrowUp" ? currentIndex - 1 : currentIndex + 1;
+      if (newIndex >= 0 && newIndex < selectElement.options.length) {
+        selectElement.selectedIndex = newIndex;
+        setMode(selectElement.options[newIndex].value);
+      }
+    }
+  };
+
   return (
     <div className="all">
       <div className="box">
@@ -220,7 +249,7 @@ member. name)`
               <img src={group32} alt="vector"></img>
             </div>
           )}
-          <Link to={"/login"}>
+          <Link to={"/login"} onClick={logOut}>
             <img src={group33} alt="vector"></img>
           </Link>
           {user.id ? (
@@ -238,6 +267,8 @@ member. name)`
           value={mode}
           onChange={(e) => setMode(e.target.value)}
           className="selects top"
+          onKeyDown={handleKeyDown}
+          id="colorSelect"
         >
           <option value="apex">Lenguage</option>
           <option value="c_cpp">C/C++</option>
@@ -281,34 +312,41 @@ member. name)`
           onChange={(e) => setColor(e.target.value)}
           className="selects"
         >
-          <option value="#2660A4">Color</option>
-          <option value="#40E0D0">Turquoise</option>
-          <option value="#FF7F50">Coral</option>
-          <option value="#E6E6FA">Lavender</option>
-          <option value="#008080">Teal</option>
-          <option value="#FF00FF">Magenta</option>
-          <option value="#7FFF00">Chartreuse</option>
-          <option value="#4B0082">Indigo</option>
-          <option value="#00CED1">Turquoise Blue</option>
-          <option value="#FF00FF">Fuchsia</option>
-          <option value="#CCCCFF">Periwinkle</option>
+          <option value="#B0E0E6">Powder Blue</option>
+          <option value="#C8A2C8">Lavender</option>
+          <option value="#FFA07A">Light Salmon</option>
+          <option value="#98FB98">Pale Green</option>
+          <option value="#FFB6C1">Light Pink</option>
+          <option value="#87CEFA">Light Sky Blue</option>
+          <option value="#20B2AA">Light Sea Green</option>
+          <option value="#DDA0DD">Plum</option>
+          <option value="#F0E68C">Khaki</option>
+          <option value="#FAFAD2">Light Goldenrod Yellow</option>
+          <option value="#FFDAB9">Peach Puff</option>
+          <option value="#B0C4DE">Light Steel Blue</option>
+          <option value="#90EE90">Light Green</option>
+          <option value="#FFDEAD">Navajo White</option>
+          <option value="#FFC0CB">Pink</option>
         </select>
         <div className="contenido-home top" style={{ backgroundColor: color }}>
-          <AceEditor
-            className="ace"
-            mode={mode}
-            theme={theme}
-            value={code}
-            ref={acce}
-            onChange={(newCode) => setCode(newCode)}
-            height="30vh"
-            width="100%"
-            showGutter={false}
-            highlightActiveLine={false}
-            enableBasicAutocompletion={false}
-            enableLiveAutocompletion={false}
-            style={{ fontSize: "10px" }}
-          />
+          <div className="ace-content" style={{ backgroundColor: colorEditor }}>
+            <img src={group29} alt="group29"></img>
+            <AceEditor
+              className="ace"
+              mode={mode}
+              theme={theme}
+              value={code}
+              ref={acce}
+              onChange={(newCode) => setCode(newCode)}
+              height="30vh"
+              width="100%"
+              showGutter={false}
+              highlightActiveLine={false}
+              enableBasicAutocompletion={false}
+              enableLiveAutocompletion={false}
+              style={{ fontSize: "10px" }}
+            />
+          </div>
         </div>
       </div>
     </div>

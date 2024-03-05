@@ -23,8 +23,8 @@ function ForgotPass() {
           .put(`http://localhost:3000/api/users/${id}`, { password })
           .then((mod) => {
             alerts(
-              "Email enviado",
-              "Se envió un codigo de recuperación a su correo.",
+              "Email send!",
+              "Check your email for a new passcode!",
               "success"
             );
             navigate("/login");
@@ -33,8 +33,8 @@ function ForgotPass() {
       })
       .catch((err) => {
         alerts(
-          "Email no enviado",
-          "El email que ingreso no esta registrado.",
+          "Email don't register!",
+          "The email you enter is not register.",
           "warning"
         );
       });
@@ -82,7 +82,7 @@ function ForgotPass() {
               ></input>
             </div>
 
-            <p className="forgotPassword top">
+            <p className="forgotPassword">
               <Link to="/login">Log in</Link>
             </p>
           </div>

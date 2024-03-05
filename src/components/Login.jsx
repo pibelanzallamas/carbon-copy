@@ -23,14 +23,14 @@ function Login() {
       .then((user) => {
         dispatch(setUser(user.data));
         alerts(
-          `Bienvenido ${user.data.name}!`,
-          `El usuario ha sido logueado con exito.`,
+          `Welcome ${user.data.name}!`,
+          `The user has been loggin with success!.`,
           "success"
         );
         navigate("/home");
       })
       .catch((err) => {
-        alerts("Atención!", `No se encontro el usuario ingresado.`, "warning");
+        alerts("Warning!", "The user entered is not registered", "warning");
       });
   }
 
@@ -92,10 +92,10 @@ function Login() {
               ></input>
             </div>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <p className="forgotPassword top">
+              <p className="forgotPassword">
                 <Link to="/register">Register</Link>
               </p>
-              <p className="forgotPassword top">
+              <p className="forgotPassword">
                 <Link to={"/forgot"}>Forgot your password</Link>
               </p>
             </div>

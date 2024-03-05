@@ -28,26 +28,27 @@ function Profile() {
         .put(`http://localhost:3000/api/users/${id}`, { name, email, password })
         .then((ok) => {
           const newU = ok.data[1][0];
-          alerts(`Exito!`, `El usuario ha sido actualizado.`, "success");
+          alerts(`Success!`, `User ${newU.name} updated!`, "success");
           const newS = { email: newU.email, name: newU.name, id: newU.id };
+          setPass("");
           dispatch(setUser(newS));
         })
         .catch((er) => {
           console.log(er);
-          alerts(`Ratas!`, `El usuario no puedo ser modificado.`, "warning");
+          alerts(`Rats!`, `The user couldn't be updated.`, "warning");
         });
     } else {
       axios
         .put(`http://localhost:3000/api/users/${id}`, { name, email })
         .then((ok) => {
           const newU = ok.data[1][0];
-          alerts(`Exito!`, `El usuario ha sido actualizado.`, "success");
+          alerts(`Success!`, `User ${newU.name} updated!`, "success");
           const newS = { email: newU.email, name: newU.name, id: newU.id };
           dispatch(setUser(newS));
         })
         .catch((er) => {
           console.log(er);
-          alerts(`Ratas!`, `El usuario no puedo ser modificado.`, "warning");
+          alerts(`Rats!`, `The user couldn't be updated.`, "warning");
         });
     }
   }
@@ -62,7 +63,7 @@ function Profile() {
       .catch((err) => console.log(err));
   }, []);
 
-  //select fav
+  //select fav a global
   function handleFav(id, style, format, color) {
     const selectFav = {
       id,
@@ -91,7 +92,7 @@ function Profile() {
         </Link>
         <p className="subtitulo top"> Give style to your code</p>
         <div className="datos-perfil top">
-          <h3>Perfil</h3>
+          <h3>Profile</h3>
           <form onSubmit={handleChange}>
             <input
               style={{ color: "black" }}
@@ -118,11 +119,12 @@ function Profile() {
               placeholder="nueva password"
             ></input>
             <br></br>
-            <button>Modificar</button>
+            <button>Update</button>
           </form>
         </div>
+        <br />
         <div className="favoritos">
-          <h3>Favoritos</h3>
+          <h3>Favorites</h3>
           {favs.map((fav, id) => (
             <div className="user-fav-card" key={id}>
               <p>

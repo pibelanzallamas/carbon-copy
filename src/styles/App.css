@@ -228,9 +228,17 @@
   flex-grow: 1;
 }
 
-.ace {
+.ace-content {
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   border: 1px solid #FFF;
-  border-radius: 0 15px 15px 15px;
+  border-radius: 0 25px 25px 25px;
+}
+.ace-content img {
+  margin-bottom: 6px;
+  margin-left: 3px;
 }
 
 .profile-pic-figure {

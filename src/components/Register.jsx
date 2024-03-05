@@ -24,15 +24,11 @@ function Register() {
         password,
       })
       .then((user) => {
-        alerts("Exito!", `El usuario ha sido creado correctamente.`, "success");
+        alerts("Success!", `User created correctly!`, "success");
         navigate("/login");
       })
       .catch((err) => {
-        alerts(
-          "Oh oh!",
-          `El usuario no ha sido creado correctamente.`,
-          "warning"
-        );
+        alerts("Oh oh!", `User couldn't register propertyly.`, "warning");
       });
   }
 
@@ -108,7 +104,7 @@ function Register() {
               ></input>
             </div>
 
-            <p className="forgotPassword top">
+            <p className="forgotPassword">
               <Link to="/login">Log in</Link>
             </p>
           </div>
