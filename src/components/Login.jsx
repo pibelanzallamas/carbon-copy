@@ -13,7 +13,7 @@ import axios from "axios";
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("kath@p5.com");
-  const [password, setPassword] = useState("1234");
+  const [password, setPassword] = useState("********");
   const dispatch = useDispatch();
 
   function handleLogin(e) {

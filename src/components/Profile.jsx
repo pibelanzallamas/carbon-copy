@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import group33 from "../assets/Group33.svg";
-import group34 from "../assets/Group34.svg";
+import home from "../assets/home-icon.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { alerts } from "../utils/alerts";
@@ -19,27 +19,7 @@ function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [favs, setFavs] = useState([]);
-  useEffect(() => {
-    const uid = id;
-    axios
-      .get(`http://localhost:3000/api/favorites/${uid}`)
-      .then((fav) => setFavs(fav.data))
-      .catch((err) => console.log(err));
-  }, []);
-
-  function handleFav(id, style, format, color) {
-    const selectFav = {
-      id,
-      style,
-      format,
-      color,
-    };
-    console.log(selectFav);
-    dispatch(setFav(selectFav));
-    navigate("/home");
-  }
-
+  //mod user
   function handleChange(e) {
     e.preventDefault();
 
@@ -72,13 +52,37 @@ function Profile() {
     }
   }
 
+  //obtener todos los favs
+  const [favs, setFavs] = useState([]);
+  useEffect(() => {
+    const uid = id;
+    axios
+      .get(`http://localhost:3000/api/favorites/${uid}`)
+      .then((fav) => setFavs(fav.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  //select fav
+  function handleFav(id, style, format, color) {
+    const selectFav = {
+      id,
+      style,
+      format,
+      color,
+    };
+    dispatch(setFav(selectFav));
+    navigate("/home");
+  }
+
   return (
     <div className="all">
       <div className="box">
         <div className="navbar">
           <img src={group33} alt="vector"></img>
           <Link to={"/home"}>
-            <img src={group34} alt="vector"></img>
+            <div className="home-icon-div">
+              <img src={home} alt="vector"></img>
+            </div>
           </Link>
         </div>
         <div className="linea"></div>
@@ -119,8 +123,8 @@ function Profile() {
         </div>
         <div className="favoritos">
           <h3>Favoritos</h3>
-          {favs.map((fav) => (
-            <div className="user-fav-card">
+          {favs.map((fav, id) => (
+            <div className="user-fav-card" key={id}>
               <p>
                 {fav.style.style}, {fav.style.format},{fav.style.color}
                 <button
