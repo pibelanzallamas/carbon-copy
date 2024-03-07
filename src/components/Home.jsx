@@ -48,6 +48,7 @@ import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
 import exit from "../assets/exit.svg";
 import exit2 from "../assets/exit-2.svg";
+import { setUser } from "../state/userState";
 
 function Home() {
   const acce = useRef(null);
@@ -159,6 +160,10 @@ members.map (member =>
 
   //likear estilo
   function handleLike() {
+    if (!user.id) {
+      alerts("Hey!", "You need to register first!", "warning");
+    }
+
     let sid,
       uid = user.id;
 
@@ -217,7 +222,14 @@ members.map (member =>
       color: null,
     };
 
+    const emptyU = {
+      id: null,
+      name: null,
+      email: null,
+    };
     dispatch(setFav(emptyS));
+    dispatch(setUser(emptyU));
+    alerts("Byebye!", "See you space cowboy!", "success");
   }
 
   //manejar option with keys
@@ -285,11 +297,13 @@ members.map (member =>
               <img src={group32} alt="vector"></img>
             </div>
           )}
+
           <Link to={"/login"} onClick={logOut}>
             <div className="home-icon-div" style={{ padding: "4px" }}>
               <img src={exit} alt="vector"></img>
             </div>
           </Link>
+
           {user.id ? (
             <Link to={`/user/${user.id}`}>
               <img src={group34} alt="vector"></img>

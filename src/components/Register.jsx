@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import group33 from "../assets/Group33.svg";
+import home from "../assets/home.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group3 from "../assets/Group3.svg";
 import group4 from "../assets/Group4.svg";
@@ -37,7 +37,11 @@ function Register() {
       <form onSubmit={handleRegister}>
         <div className="box">
           <div className="navbar">
-            <img src={group33} alt="vector"></img>
+            <Link to={"/home"}>
+              <div className="home-icon-div">
+                <img src={home} alt="vector" style={{ width: "24px" }}></img>
+              </div>
+            </Link>
           </div>
 
           <div className="linea"></div>
