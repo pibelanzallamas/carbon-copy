@@ -1,6 +1,6 @@
 import React from "react";
 import group31 from "../assets/Group31.svg";
-import home from "../assets/home-icon.svg";
+import home from "../assets/home.svg";
 import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
 import carbonLogo from "../assets/carbonLogo.svg";

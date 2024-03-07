@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import group33 from "../assets/Group33.svg";
-import home from "../assets/home-icon.svg";
+import home from "../assets/home.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { alerts } from "../utils/alerts";
@@ -15,7 +15,9 @@ function Profile() {
   const { id } = useParams();
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
-  const [password, setPass] = useState(""); //que hacemoscnpass
+  const [password, setPass] = useState("");
+  const [favs, setFavs] = useState([]);
+  const [modFav, setModFav] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -55,41 +57,16 @@ function Profile() {
     }
   }
 
-  //del fav
-  function handleDislike(fid) {
-    let sid,
-      uid = user.id;
-
-    axios
-      .get("http://localhost:3000/api/styles/", {
-        params: { theme, mode, color },
-      })
-      .then((ok) => {
-        sid = ok.data.id;
-        axios
-          .delete("http://localhost:3000/api/favorites/", {
-            params: { sid, uid },
-          })
-          .then((ok) => {
-            alerts("Ok!", "Favorite deleted!", "success");
-            setLike(false);
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
-  }
-
-  //obtener todos los favs
-  const [favs, setFavs] = useState([]);
+  //get all favs
   useEffect(() => {
     const uid = id;
     axios
       .get(`http://localhost:3000/api/favorites/${uid}`)
       .then((fav) => setFavs(fav.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [modFav]);
 
-  //select fav a global
+  //select fav
   function handleFav(id, style, format, color) {
     const selectFav = {
       id,
@@ -99,6 +76,21 @@ function Profile() {
     };
     dispatch(setFav(selectFav));
     navigate("/home");
+  }
+
+  //del fav
+  function handleDisFav(sid) {
+    let uid = user.id;
+
+    axios
+      .delete("http://localhost:3000/api/favorites/", {
+        params: { uid, sid },
+      })
+      .then((ok) => {
+        setModFav(!modFav);
+        alerts("Oh no!", "You have deleted the style!", "warning");
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -167,8 +159,8 @@ function Profile() {
                 >
                   select
                 </button>
-                <button onClick={() => handleDislike(fav.style.id)}>
-                  dislike
+                <button onClick={() => handleDisFav(fav.style.id)}>
+                  delete
                 </button>
               </p>
             </div>

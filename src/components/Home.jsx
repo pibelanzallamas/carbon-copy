@@ -46,6 +46,8 @@ import group32 from "../assets/Group32.svg";
 import group32b from "../assets/Group32D.svg";
 import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
+import exit from "../assets/exit.svg";
+import exit2 from "../assets/exit-2.svg";
 
 function Home() {
   const acce = useRef(null);
@@ -284,7 +286,9 @@ members.map (member =>
             </div>
           )}
           <Link to={"/login"} onClick={logOut}>
-            <img src={group33} alt="vector"></img>
+            <div className="home-icon-div" style={{ padding: "4px" }}>
+              <img src={exit} alt="vector"></img>
+            </div>
           </Link>
           {user.id ? (
             <Link to={`/user/${user.id}`}>
