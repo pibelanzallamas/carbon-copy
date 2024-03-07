@@ -55,7 +55,7 @@ function Home() {
   const [like, setLike] = useState(false);
   const [mode, setMode] = useState("apex");
   const [theme, setTheme] = useState("vibrant_ink");
-  const [color, setColor] = useState("#2660A4");
+  const [color, setColor] = useState("#e98a15");
   const [colorEditor, setColorEditor] = useState("");
   const [code, setCode] = useState(
     `let members = [{name:'Dylan' , 
@@ -147,7 +147,7 @@ members.map (member =>
             params: { sid, uid },
           })
           .then((ok) => {
-            alerts("Ok!", "Favorite deleted!", "success");
+            alerts("Oh no!", "You have deleted the style!", "warning");
             setLike(false);
           })
           .catch((err) => console.log(err));
@@ -168,7 +168,7 @@ members.map (member =>
           .post("http://localhost:3000/api/favorites/register", { uid, sid })
           .then((ok) => {
             if (ok.data[1]) {
-              alerts("Exito!", "Favorite saved!", "success");
+              alerts("Success!", "You have saved the style!", "success");
               setLike(true);
             }
           })
@@ -219,16 +219,50 @@ members.map (member =>
   }
 
   //manejar option with keys
-  const handleKeyDown = (event) => {
+  const handleKeyDownM = (event) => {
     const { key } = event;
+
     if (key === "ArrowUp" || key === "ArrowDown") {
       event.preventDefault();
-      const selectElement = document.getElementById("colorSelect");
-      const currentIndex = selectElement.selectedIndex;
-      const newIndex = key === "ArrowUp" ? currentIndex - 1 : currentIndex + 1;
-      if (newIndex >= 0 && newIndex < selectElement.options.length) {
-        selectElement.selectedIndex = newIndex;
-        setMode(selectElement.options[newIndex].value);
+      const modeElement = document.getElementById("modeSelect");
+      const modeIndex = modeElement.selectedIndex;
+      const newModeIndex = key === "ArrowUp" ? modeIndex - 1 : modeIndex + 1;
+
+      if (newModeIndex >= 0 && newModeIndex < modeElement.options.length) {
+        modeElement.selectedIndex = newModeIndex;
+        setMode(modeElement.value);
+      }
+    }
+  };
+
+  const handleKeyDownT = (event) => {
+    const { key } = event;
+
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const themeElement = document.getElementById("themeSelect");
+      const themeIndex = themeElement.selectedIndex;
+      const newThemeIndex = key === "ArrowUp" ? themeIndex - 1 : themeIndex + 1;
+
+      if (newThemeIndex >= 0 && newThemeIndex < themeElement.options.length) {
+        themeElement.selectedIndex = newThemeIndex;
+        setTheme(themeElement.value);
+      }
+    }
+  };
+
+  const handleKeyDownC = (event) => {
+    const { key } = event;
+
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const colorElement = document.getElementById("colorSelect");
+      const colorIndex = colorElement.selectedIndex;
+      const newColorIndex = key === "ArrowUp" ? colorIndex - 1 : colorIndex + 1;
+
+      if (newColorIndex >= 0 && newColorIndex < colorElement.options.length) {
+        colorElement.selectedIndex = newColorIndex;
+        setColor(colorElement.value);
       }
     }
   };
@@ -267,8 +301,8 @@ members.map (member =>
           value={mode}
           onChange={(e) => setMode(e.target.value)}
           className="selects top"
-          onKeyDown={handleKeyDown}
-          id="colorSelect"
+          onKeyDown={handleKeyDownM}
+          id="modeSelect"
         >
           <option value="apex">Lenguage</option>
           <option value="c_cpp">C/C++</option>
@@ -289,6 +323,8 @@ members.map (member =>
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
           className="selects"
+          onKeyDown={handleKeyDownT}
+          id="themeSelect"
         >
           <option value="vibrant_ink">Theme</option>
           <option value="ambiance">Ambience</option>
@@ -311,7 +347,10 @@ members.map (member =>
           value={color}
           onChange={(e) => setColor(e.target.value)}
           className="selects"
+          onKeyDown={handleKeyDownC}
+          id="colorSelect"
         >
+          <option value="#E98A15">Color</option>
           <option value="#B0E0E6">Powder Blue</option>
           <option value="#C8A2C8">Lavender</option>
           <option value="#FFA07A">Light Salmon</option>
@@ -344,7 +383,6 @@ members.map (member =>
               highlightActiveLine={false}
               enableBasicAutocompletion={false}
               enableLiveAutocompletion={false}
-              style={{ fontSize: "10px" }}
             />
           </div>
         </div>

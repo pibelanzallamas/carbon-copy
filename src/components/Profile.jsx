@@ -25,16 +25,19 @@ function Profile() {
 
     if (password) {
       axios
-        .put(`http://localhost:3000/api/users/${id}`, { name, email, password })
+        .put(`http://localhost:3000/api/users/pass/${id}`, {
+          name,
+          email,
+          password,
+        })
         .then((ok) => {
           const newU = ok.data[1][0];
-          alerts(`Success!`, `User ${newU.name} updated!`, "success");
           const newS = { email: newU.email, name: newU.name, id: newU.id };
-          setPass("");
           dispatch(setUser(newS));
+          alerts(`Success!`, `User ${newU.name} updated!`, "success");
+          setPass("");
         })
         .catch((er) => {
-          console.log(er);
           alerts(`Rats!`, `The user couldn't be updated.`, "warning");
         });
     } else {
@@ -47,10 +50,33 @@ function Profile() {
           dispatch(setUser(newS));
         })
         .catch((er) => {
-          console.log(er);
           alerts(`Rats!`, `The user couldn't be updated.`, "warning");
         });
     }
+  }
+
+  //del fav
+  function handleDislike(fid) {
+    let sid,
+      uid = user.id;
+
+    axios
+      .get("http://localhost:3000/api/styles/", {
+        params: { theme, mode, color },
+      })
+      .then((ok) => {
+        sid = ok.data.id;
+        axios
+          .delete("http://localhost:3000/api/favorites/", {
+            params: { sid, uid },
+          })
+          .then((ok) => {
+            alerts("Ok!", "Favorite deleted!", "success");
+            setLike(false);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
   }
 
   //obtener todos los favs
@@ -140,6 +166,9 @@ function Profile() {
                   }}
                 >
                   select
+                </button>
+                <button onClick={() => handleDislike(fav.style.id)}>
+                  dislike
                 </button>
               </p>
             </div>

@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/material": "^5.15.12",
     "@reduxjs/toolkit": "^2.1.0",
     "ace-builds": "^1.32.6",
     "animate.css": "^4.1.1",
@@ -28,7 +32,8 @@
     "react-router-dom": "^6.17.0",
     "react-syntax-highlighter": "^15.5.0",
     "redux": "^5.0.1",
-    "sass": "^1.69.4"
+    "sass": "^1.69.4",
+    "sweetalert2": "^11.10.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

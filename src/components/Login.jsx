@@ -24,7 +24,7 @@ function Login() {
         dispatch(setUser(user.data));
         alerts(
           `Welcome ${user.data.name}!`,
-          `The user has been loggin with success!.`,
+          `The user has been logged correctly!.`,
           "success"
         );
         navigate("/home");
