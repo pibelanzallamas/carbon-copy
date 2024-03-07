@@ -34,7 +34,7 @@ function Profile() {
           const newU = ok.data[1][0];
           const newS = { email: newU.email, name: newU.name, id: newU.id };
           dispatch(setUser(newS));
-          alerts(`Success!`, `User ${newU.name} updated!`, "success");
+          alerts(`Success!`, `The user has been updated!`, "success");
           setPass("");
         })
         .catch((er) => {
@@ -45,7 +45,7 @@ function Profile() {
         .put(`http://localhost:3000/api/users/${id}`, { name, email })
         .then((ok) => {
           const newU = ok.data[1][0];
-          alerts(`Success!`, `User ${newU.name} updated!`, "success");
+          alerts(`Success!`, `The user has been updated!`, "success");
           const newS = { email: newU.email, name: newU.name, id: newU.id };
           dispatch(setUser(newS));
         })
@@ -113,9 +113,7 @@ function Profile() {
           </Link>
         </div>
         <div className="linea"></div>
-        <Link to={"/home"}>
-          <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
-        </Link>
+        <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
         <p className="subtitulo top"> Give style to your code</p>
         <div className="datos-perfil top">
           <h3>Profile</h3>
@@ -127,6 +125,7 @@ function Profile() {
               required
               type="text"
               maxLength={40}
+              placeholder="Katherine"
             ></input>
             <input
               style={{ color: "black" }}
@@ -135,6 +134,7 @@ function Profile() {
               required
               type="email"
               maxLength={60}
+              placeholder="kath@p5.com"
             ></input>
             <input
               style={{ color: "black" }}

@@ -231,6 +231,7 @@
   border: 1px solid #FFF;
   border-radius: 0 25px 25px 25px;
   padding-left: 6px;
+  padding-bottom: 10px;
 }
 .ace-content img {
   margin-left: 0px;

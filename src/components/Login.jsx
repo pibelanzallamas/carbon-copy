@@ -24,13 +24,13 @@ function Login() {
         dispatch(setUser(user.data));
         alerts(
           `Welcome ${user.data.name}!`,
-          `The user has been logged correctly!.`,
+          `The user has logged in successfully!`,
           "success"
         );
         navigate("/home");
       })
-      .catch((err) => {
-        alerts("Warning!", "The user entered is not registered", "warning");
+      .catch((er) => {
+        alerts("Oh no!", "The email or the password are incorrect!", "warning");
       });
   }
 
