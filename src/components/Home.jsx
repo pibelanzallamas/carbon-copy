@@ -232,6 +232,17 @@ members.map (member =>
     alerts("Byebye!", "See you space cowboy!", "success");
   }
 
+  //borrar el state del fav seleccionado
+  function cerrarFav() {
+    const emptyS = {
+      id: null,
+      format: null,
+      style: null,
+      color: null,
+    };
+    dispatch(setFav(emptyS));
+  }
+
   //manejar option with keys
   const handleKeyDownM = (event) => {
     const { key } = event;
@@ -305,7 +316,7 @@ members.map (member =>
           </Link>
 
           {user.id ? (
-            <Link to={`/user/${user.id}`}>
+            <Link to={`/user/${user.id}`} onClick={cerrarFav}>
               <img src={group34} alt="vector"></img>
             </Link>
           ) : (

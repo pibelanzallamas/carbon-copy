@@ -20,7 +20,7 @@ function ForgotPass() {
       .then((user) => {
         [id, password] = user.data;
         axios
-          .put(`http://localhost:3000/api/users/${id}`, { password })
+          .put(`http://localhost:3000/api/users/pass/${id}`, { password })
           .then((mod) => {
             alerts(
               "Email send!",

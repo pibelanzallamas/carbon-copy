@@ -294,11 +294,6 @@ input:focus {
   box-shadow: none;
 }
 
-a:focus {
-  outline: 1px orange solid;
-  outline-color: orange;
-}
-
 .top {
   margin-top: 0.94rem;
 }
