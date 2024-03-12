@@ -31,8 +31,6 @@ function Login() {
       })
       .catch((er) => {
         alerts("Oh no!", "The email or the password are incorrect!", "warning");
-        setPassword("");
-        setEmail("");
       });
   }
 

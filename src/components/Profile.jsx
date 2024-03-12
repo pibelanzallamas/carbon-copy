@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import group33 from "../assets/Group33.svg";
+import group3 from "../assets/Group3.svg";
+import group4 from "../assets/Group4.svg";
+import group5 from "../assets/Group5.svg";
+import group8 from "../assets/Group8.svg";
 import home from "../assets/home.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import { Link, useParams, useNavigate } from "react-router-dom";
@@ -106,64 +110,79 @@ function Profile() {
         <div className="linea"></div>
         <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
         <p className="subtitulo top"> Give style to your code</p>
-        <div className="datos-perfil top">
-          <h3>Profile</h3>
+        <div className="top">
+          <h4 style={{ color: "white" }}>Profile</h4>
           <form onSubmit={handleChange}>
-            <input
-              style={{ color: "black" }}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              type="text"
-              maxLength={40}
-              placeholder="Katherine"
-            ></input>
-            <input
-              style={{ color: "black" }}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              type="email"
-              maxLength={60}
-              placeholder="kath@p5.com"
-            ></input>
-            <input
-              style={{ color: "black" }}
-              value={password}
-              onChange={(e) => setPass(e.target.value)}
-              type="password"
-              maxLength={20}
-              placeholder="nueva password"
-            ></input>
-            <br></br>
-            <button>Update</button>
+            <div className="input-box mini-top">
+              <div className="user-logo">
+                <img src={group4} alt="group5"></img>
+              </div>
+              <input
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                type="text"
+                maxLength={40}
+                required
+              ></input>
+            </div>
+            <div className="input-box">
+              <img src={group5} alt="group5"></img>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                type="email"
+                maxLength={60}
+                required
+              ></input>
+            </div>
+            <div className="input-box">
+              <img src={group8} alt="group5"></img>
+              <input
+                onChange={(e) => setPass(e.target.value)}
+                placeholder={password}
+                type="password"
+                maxLength={20}
+              ></input>
+            </div>
+            <div className="button-container">
+              <button className="update-button">Update</button>
+            </div>
           </form>
         </div>
-        <br />
-        <div className="favoritos">
-          <h3>Favorites</h3>
-          {favs.map((fav, id) => (
-            <div className="user-fav-card" key={id}>
-              <p>
-                {fav.style.style}, {fav.style.format},{fav.style.color}
-                <button
-                  onClick={() => {
-                    handleFav(
-                      fav.style.id,
-                      fav.style.style,
-                      fav.style.format,
-                      fav.style.color
-                    );
-                  }}
-                >
-                  select
-                </button>
-                <button onClick={() => handleDisFav(fav.style.id)}>
-                  delete
-                </button>
-              </p>
-            </div>
-          ))}
+        <div className="mini-top">
+          <h4 style={{ color: "white" }}>Favorites</h4>
+          <div className="favs-container">
+            {favs.map((fav, id) => (
+              <div className="one-user-fav mini-top" key={id}>
+                {fav.style.style} {fav.style.format}
+                <div
+                  className="color-fav"
+                  style={{ backgroundColor: fav.style.color }}
+                ></div>
+                <div className="fav-buttons-container mini-top">
+                  <button
+                    onClick={() => {
+                      handleFav(
+                        fav.style.id,
+                        fav.style.style,
+                        fav.style.format,
+                        fav.style.color
+                      );
+                    }}
+                    className="update-button fav-buttons"
+                  >
+                    Select
+                  </button>
+                  <button
+                    onClick={() => handleDisFav(fav.style.id)}
+                    className="update-button fav-buttons"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
