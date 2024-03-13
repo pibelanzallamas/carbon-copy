@@ -99,7 +99,7 @@ function Profile() {
 
   return (
     <div className="all">
-      <div className="box">
+      <div className="box" style={{ paddingBottom: "1.4rem" }}>
         <div className="navbar">
           <Link to={"/home"}>
             <div className="home-icon-div">
@@ -109,8 +109,8 @@ function Profile() {
         </div>
         <div className="linea"></div>
         <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
-        <p className="subtitulo top"> Give style to your code</p>
-        <div className="top">
+        <p className="subtitulo top font-me"> Give style to your code</p>
+        <div className="top font-me">
           <h4 style={{ color: "white" }}>Profile</h4>
           <form onSubmit={handleChange}>
             <div className="input-box mini-top">
@@ -139,7 +139,7 @@ function Profile() {
               <img src={group8} alt="group5"></img>
               <input
                 onChange={(e) => setPass(e.target.value)}
-                placeholder={password}
+                placeholder={"********"}
                 type="password"
                 maxLength={20}
               ></input>
@@ -149,7 +149,7 @@ function Profile() {
             </div>
           </form>
         </div>
-        <div className="mini-top">
+        <div className="mini-top font-me">
           <h4 style={{ color: "white" }}>Favorites</h4>
           <div className="favs-container">
             {favs.map((fav, id) => (

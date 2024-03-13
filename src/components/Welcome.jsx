@@ -17,7 +17,7 @@ function Welcome() {
       </div>
 
       <div className="copete">
-        <div className="texto-copete">
+        <div className="texto-copete font-me">
           <p>Educational project inspired by</p>
           <img src={logoCarbon1} alt="logo-carbon"></img>
         </div>

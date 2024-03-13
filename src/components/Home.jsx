@@ -37,17 +37,15 @@ import "ace-builds/src-noconflict/theme-kuroir";
 import "ace-builds/src-noconflict/theme-ambiance";
 import { useDispatch, useSelector } from "react-redux";
 import { setFav } from "../state/favState";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { alerts } from "../utils/alerts";
 import carbonLogo from "../assets/carbonLogo.svg";
 import group29 from "../assets/Group29.svg";
 import group31 from "../assets/Group31.svg";
 import group32 from "../assets/Group32.svg";
 import group32b from "../assets/Group32D.svg";
-import group33 from "../assets/Group33.svg";
 import group34 from "../assets/Group34.svg";
 import exit from "../assets/exit.svg";
-import exit2 from "../assets/exit-2.svg";
 import { setUser } from "../state/userState";
 
 function Home() {
@@ -61,15 +59,16 @@ function Home() {
   const [color, setColor] = useState("#e98a15");
   const [colorEditor, setColorEditor] = useState("");
   const [code, setCode] = useState(
-    `let members = [{name:'Dylan' , 
-age: 22, area: 'Content'}, 
-{name:'Lucia' , age: 25, area: 'Intro'}, 
-{name:'Mar' , age: 24, 
-area: 'Bootcamp'}] 
+    `let members = [{name:'Dylan',
+age: 22, area: 'Content'},
+{name:'Lucia' , age: 25, 
+area: 'Intro'},
+{name:'Mar' , age: 24,
+area: 'Bootcamp'}]
 
-const plataforma = members => 
-members.map (member => 
-  member. name)`
+const plataforma = (members) =>
+members.map(member =>
+member.name)`
   );
 
   //detectar color de fondo
@@ -133,6 +132,11 @@ members.map (member =>
       }
     }
   }, [code]);
+
+  //cambiar codigo de editor
+  function changeCode(newCode) {
+    setCode(newCode);
+  }
 
   //dislikear estilo
   function handleDislike() {
@@ -229,7 +233,7 @@ members.map (member =>
     };
     dispatch(setFav(emptyS));
     dispatch(setUser(emptyU));
-    alerts("Byebye!", "See you space cowboy!", "success");
+    if (user.id) alerts("Byebye!", "See you space cowboy!", "success");
   }
 
   //borrar el state del fav seleccionado
@@ -292,6 +296,22 @@ members.map (member =>
     }
   };
 
+  useEffect(() => {
+    if (acce.current) {
+      const editor = acce.current.editor;
+      editor.getSession().on("changeCursor", function (e) {
+        var maxColumn = editor.getSession().getDocument().getLine(0).length;
+        var currentColumn = editor.getCursorPosition().column;
+
+        if (currentColumn >= maxColumn) {
+          editor.setReadOnly(true);
+        } else {
+          editor.setReadOnly(false);
+        }
+      });
+    }
+  }, [code]);
+
   return (
     <div className="all">
       <div className="box">
@@ -325,11 +345,11 @@ members.map (member =>
         </div>
         <div className="linea"></div>
         <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
-        <p className="subtitulo top"> Give style to your code</p>
+        <p className="subtitulo top font-me"> Give style to your code</p>
         <select
           value={mode}
           onChange={(e) => setMode(e.target.value)}
-          className="selects top"
+          className="selects top font-me"
           onKeyDown={handleKeyDownM}
           id="modeSelect"
         >
@@ -351,7 +371,7 @@ members.map (member =>
         <select
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
-          className="selects"
+          className="selects font-me"
           onKeyDown={handleKeyDownT}
           id="themeSelect"
         >
@@ -375,7 +395,7 @@ members.map (member =>
         <select
           value={color}
           onChange={(e) => setColor(e.target.value)}
-          className="selects"
+          className="selects font-me"
           onKeyDown={handleKeyDownC}
           id="colorSelect"
         >
@@ -405,8 +425,9 @@ members.map (member =>
               theme={theme}
               value={code}
               ref={acce}
-              onChange={(newCode) => setCode(newCode)}
-              height="30vh"
+              onChange={changeCode}
+              minLines={12}
+              maxLines={12}
               width="100%"
               showGutter={false}
               highlightActiveLine={false}

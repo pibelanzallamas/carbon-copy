@@ -48,9 +48,9 @@ function Register() {
 
           <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
 
-          <p className="subtitulo top"> Give style to your code</p>
+          <p className="subtitulo top font-me"> Give style to your code</p>
 
-          <div className="solapa top">
+          <div className="solapa top font-me">
             <img src={group3} alt="group3"></img>
             <p>Sign up</p>
           </div>
@@ -58,14 +58,14 @@ function Register() {
           <div className="contenido">
             <div className="preview">
               <div className="texto">
-                <p>
+                <p className="font-me">
                   <span className="green">let</span> user = &#123; name:
                   <span> '{name.substring(0, 25)}'</span>,
                 </p>
-                <p>
+                <p className="font-me">
                   email: <span>'{email.substring(0, 25)}'</span>,
                 </p>
-                <p>
+                <p className="font-me">
                   password:{" "}
                   <span>'{"*".repeat(password.substring(0, 10).length)}'</span>
                   &#125;
@@ -81,6 +81,7 @@ function Register() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder={name}
                 type="text"
+                className="font-me"
                 maxLength={40}
                 required
               ></input>
@@ -92,6 +93,7 @@ function Register() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={email}
                 type="email"
+                className="font-me"
                 maxLength={60}
                 required
               ></input>
@@ -108,13 +110,13 @@ function Register() {
               ></input>
             </div>
 
-            <p className="forgotPassword">
+            <p className="forgotPassword font-me">
               <Link to="/login">Log in</Link>
             </p>
           </div>
 
           <div className="button-container">
-            <button className="submitButton top">SIGN UP</button>
+            <button className="submitButton top">Sign Up</button>
           </div>
         </div>
       </form>

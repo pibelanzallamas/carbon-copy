@@ -198,11 +198,11 @@
 .submitButton {
   border: 1px solid #FFF;
   border-radius: 30px;
-  padding: 10px 40px;
+  padding: 10px 30px;
   background-color: transparent;
+  color: #FFF;
   font-size: 14px;
   cursor: pointer;
-  color: #FFF;
 }
 
 .download, .like-button {
@@ -277,6 +277,8 @@
 
 .one-user-fav {
   color: #FFF;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #FFF;
 }
 
 .color-fav {
@@ -303,7 +305,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
 a {
@@ -324,6 +325,10 @@ input {
 input:focus {
   outline: none;
   box-shadow: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .top {
@@ -363,6 +368,10 @@ input:focus {
 }
 .home-icon-div img {
   margin: 0 auto;
+}
+
+.font-me {
+  font-family: "Poppins", sans-serif !important;
 }
 
 /*# sourceMappingURL=App.css.map */

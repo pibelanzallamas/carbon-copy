@@ -56,9 +56,9 @@ function ForgotPass() {
 
           <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
 
-          <p className="subtitulo top"> Give style to your code</p>
+          <p className="subtitulo top font-me"> Give style to your code</p>
 
-          <div className="solapa top">
+          <div className="solapa top font-me">
             <img src={group3} alt="group3"></img>
             <p>Forgot</p>
           </div>
@@ -66,10 +66,10 @@ function ForgotPass() {
           <div className="contenido">
             <div className="preview">
               <div className="texto">
-                <p>
+                <p className="font-me">
                   <span className="green">let</span> user = &#123;
                 </p>
-                <p>
+                <p className="font-me">
                   email: <span>'{email.substring(0, 27)}'</span>&#125;
                 </p>
               </div>
@@ -81,17 +81,18 @@ function ForgotPass() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={email}
                 type="email"
+                className="font-me"
                 maxLength={60}
                 required
               ></input>
             </div>
 
-            <p className="forgotPassword">
+            <p className="forgotPassword font-me">
               <Link to="/login">Log in</Link>
             </p>
           </div>
           <div className="button-container">
-            <button className="submitButton top">SEND</button>
+            <button className="submitButton top">Send</button>
           </div>
         </div>
       </form>

@@ -50,9 +50,9 @@ function Login() {
 
           <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
 
-          <p className="subtitulo top"> Give style to your code</p>
+          <p className="subtitulo top font-me"> Give style to your code</p>
 
-          <div className="solapa top">
+          <div className="solapa top font-me">
             <img src={group3} alt="group3"></img>
             <p>Login</p>
           </div>
@@ -60,13 +60,13 @@ function Login() {
           <div className="contenido">
             <div className="preview">
               <div className="texto">
-                <p>
+                <p className="font-me">
                   <span className="green">let</span> user = &#123;
                 </p>
-                <p>
+                <p className="font-me">
                   email: <span>'{email.substring(0, 27)}'</span>,
                 </p>
-                <p>
+                <p className="font-me">
                   password: <span>'{"*".repeat(password.length)}'</span>&#125;
                 </p>
               </div>
@@ -78,6 +78,7 @@ function Login() {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
+                className="font-me"
                 placeholder={email}
                 type="email"
                 maxLength={60}
@@ -96,16 +97,16 @@ function Login() {
               ></input>
             </div>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <p className="forgotPassword">
+              <p className="forgotPassword font-me">
                 <Link to="/register">Register</Link>
               </p>
-              <p className="forgotPassword">
+              <p className="forgotPassword font-me">
                 <Link to={"/forgot"}>Forgot your password</Link>
               </p>
             </div>
           </div>
           <div className="button-container">
-            <button className="submitButton top">LOGIN</button>
+            <button className="submitButton top">Login</button>
           </div>
         </div>
       </form>
