@@ -47,6 +47,8 @@ import group32b from "../assets/Group32D.svg";
 import group34 from "../assets/Group34.svg";
 import exit from "../assets/exit.svg";
 import { setUser } from "../state/userState";
+import * as htmlToImage from "html-to-image";
+import download from "downloadjs";
 
 function Home() {
   const acce = useRef(null);
@@ -77,7 +79,6 @@ member.name)`
     const backgroundColor = window
       .getComputedStyle(editorElement)
       .getPropertyValue("background-color");
-
     const [r, g, b] = backgroundColor
       .substring(4, backgroundColor.length - 1)
       .split(",")
@@ -85,7 +86,6 @@ member.name)`
     const hexR = r.toString(16).padStart(2, "0");
     const hexG = g.toString(16).padStart(2, "0");
     const hexB = b.toString(16).padStart(2, "0");
-
     setColorEditor(`#${hexR}${hexG}${hexB}`);
   }, [theme]);
 
@@ -190,31 +190,16 @@ member.name)`
 
   //descargar imagen
   function handleDownload() {
-    let imagen = document.querySelector(".contenido-home");
-    let canvas = document.createElement("canvas");
-    canvas.width = imagen.offsetWidth;
-    canvas.height = imagen.offsetHeight;
-
-    let ctx = canvas.getContext("2d");
-
-    ctx.drawWindow(
-      window,
-      imagen.offsetLeft,
-      imagen.offsetTop,
-      imagen.offsetWidth,
-      imagen.offsetHeight,
-      "rgb(255,255,255)"
-    );
-
-    let dataUrl = canvas.toDataURL();
-
-    let img = new Image();
-    img.src = dataUrl;
-
-    let link = documents.createElement("a");
-    link.href = img.src;
-    link.download = "mi_imagen.png";
-    link.click();
+    htmlToImage
+      .toPng(document.getElementById("ace-react"))
+      .then(function (dataUrl) {
+        download(dataUrl, ".png");
+        alerts("Got it!", "Image download it successfully!", "success");
+      })
+      .catch(function (error) {
+        console.error("oops, something went wrong!", error);
+        alerts("Oops", "Something went wrong!", "warning");
+      });
   }
 
   //irme de la home
@@ -416,7 +401,11 @@ member.name)`
           <option value="#FFDEAD">Navajo White</option>
           <option value="#FFC0CB">Pink</option>
         </select>
-        <div className="contenido-home top" style={{ backgroundColor: color }}>
+        <div
+          className="contenido-home top"
+          id="ace-react"
+          style={{ backgroundColor: color }}
+        >
           <div className="ace-content" style={{ backgroundColor: colorEditor }}>
             <img src={group29} alt="group29"></img>
             <AceEditor
@@ -427,7 +416,7 @@ member.name)`
               ref={acce}
               onChange={changeCode}
               minLines={12}
-              maxLines={12}
+              maxLines={16}
               width="100%"
               showGutter={false}
               highlightActiveLine={false}

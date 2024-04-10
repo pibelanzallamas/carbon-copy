@@ -180,7 +180,10 @@
 .user-logo {
   border: solid 1px #FFF;
   border-radius: 50%;
-  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem;
 }
 
 .forgotPassword {
@@ -225,6 +228,9 @@
   border: 1px solid #FFF;
   border-radius: 0 25px 25px 25px;
   padding: 0.94rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .ace-content {
@@ -232,6 +238,7 @@
   border-radius: 0 25px 25px 25px;
   padding-left: 6px;
   padding-bottom: 10px;
+  flex-grow: 1;
 }
 .ace-content img {
   margin-left: 0px;
@@ -325,6 +332,10 @@ input {
 input:focus {
   outline: none;
   box-shadow: none;
+}
+
+.notis {
+  font-family: Poppins;
 }
 
 ::-webkit-scrollbar {
