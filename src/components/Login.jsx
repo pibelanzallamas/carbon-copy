@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../state/userState";
 import { alerts } from "../utils/alerts";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 function Login() {
   const navigate = useNavigate();
@@ -21,9 +22,10 @@ function Login() {
     axios
       .post("http://localhost:3000/api/users/login", { email, password })
       .then((user) => {
-        dispatch(setUser(user.data));
+        dispatch(setUser(user.data.payload));
+        Cookies.set("token", user.data.token);
         alerts(
-          `Welcome ${user.data.name}!`,
+          `Welcome ${user.data.payload.name}!`,
           `The user has logged in successfully!`,
           "success"
         );

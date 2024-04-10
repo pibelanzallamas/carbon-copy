@@ -13,8 +13,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setUser } from "../state/userState";
 import { setFav } from "../state/favState";
+import Cookies from "js-cookie";
 
 function Profile() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const { id } = useParams();
   const [name, setName] = useState(user.name);
@@ -22,10 +24,27 @@ function Profile() {
   const [password, setPass] = useState("");
   const [favs, setFavs] = useState([]);
   const [modFav, setModFav] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //mod user
+  //obtener usuario
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/users/${id}`)
+      .then((cok) => {
+        dispatch(
+          setUser({
+            email: cok.data.email,
+            id: cok.data.id,
+            name: cok.data.name,
+          })
+        );
+        setName(cok.data.name);
+        setEmail(cok.data.email);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  //modifica usuario
   function handleChange(e) {
     e.preventDefault();
 
@@ -61,7 +80,7 @@ function Profile() {
     }
   }
 
-  //get all favs
+  //obtiene favoritos
   useEffect(() => {
     const uid = id;
     axios
@@ -70,7 +89,7 @@ function Profile() {
       .catch((err) => console.log(err));
   }, [modFav]);
 
-  //select fav
+  //selecciona favorito
   function handleFav(id, style, format, color) {
     const selectFav = {
       id,
@@ -82,9 +101,9 @@ function Profile() {
     navigate("/home");
   }
 
-  //del fav
+  //borra favorito
   function handleDisFav(sid) {
-    let uid = user.id;
+    let uid = id;
 
     axios
       .delete("http://localhost:3000/api/favorites/", {

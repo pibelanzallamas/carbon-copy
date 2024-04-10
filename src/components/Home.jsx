@@ -49,6 +49,7 @@ import exit from "../assets/exit.svg";
 import { setUser } from "../state/userState";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
+import Cookies from "js-cookie";
 
 function Home() {
   const acce = useRef(null);
@@ -73,7 +74,68 @@ members.map(member =>
 member.name)`
   );
 
-  //detectar color de fondo
+  //busca cookies
+  useEffect(() => {
+    axios
+      .post("http://localhost:3000/api/users/me", {
+        token: Cookies.get("token"),
+      })
+      .then((cok) => {
+        dispatch(setUser(cok.data));
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  //manejar option with keys
+  const handleKeyDownM = (event) => {
+    const { key } = event;
+
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const modeElement = document.getElementById("modeSelect");
+      const modeIndex = modeElement.selectedIndex;
+      const newModeIndex = key === "ArrowUp" ? modeIndex - 1 : modeIndex + 1;
+
+      if (newModeIndex >= 0 && newModeIndex < modeElement.options.length) {
+        modeElement.selectedIndex = newModeIndex;
+        setMode(modeElement.value);
+      }
+    }
+  };
+
+  const handleKeyDownT = (event) => {
+    const { key } = event;
+
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const themeElement = document.getElementById("themeSelect");
+      const themeIndex = themeElement.selectedIndex;
+      const newThemeIndex = key === "ArrowUp" ? themeIndex - 1 : themeIndex + 1;
+
+      if (newThemeIndex >= 0 && newThemeIndex < themeElement.options.length) {
+        themeElement.selectedIndex = newThemeIndex;
+        setTheme(themeElement.value);
+      }
+    }
+  };
+
+  const handleKeyDownC = (event) => {
+    const { key } = event;
+
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const colorElement = document.getElementById("colorSelect");
+      const colorIndex = colorElement.selectedIndex;
+      const newColorIndex = key === "ArrowUp" ? colorIndex - 1 : colorIndex + 1;
+
+      if (newColorIndex >= 0 && newColorIndex < colorElement.options.length) {
+        colorElement.selectedIndex = newColorIndex;
+        setColor(colorElement.value);
+      }
+    }
+  };
+
+  //detectar color de fondo de ace-editor
   useEffect(() => {
     const editorElement = acce.current.editor.container;
     const backgroundColor = window
@@ -132,11 +194,6 @@ member.name)`
       }
     }
   }, [code]);
-
-  //cambiar codigo de editor
-  function changeCode(newCode) {
-    setCode(newCode);
-  }
 
   //dislikear estilo
   function handleDislike() {
@@ -202,7 +259,7 @@ member.name)`
       });
   }
 
-  //irme de la home
+  //cerrar sesión
   function logOut() {
     const emptyS = {
       id: null,
@@ -219,9 +276,10 @@ member.name)`
     dispatch(setFav(emptyS));
     dispatch(setUser(emptyU));
     if (user.id) alerts("Byebye!", "See you space cowboy!", "success");
+    Cookies.remove("token");
   }
 
-  //borrar el state del fav seleccionado
+  //irme a mi perfil
   function cerrarFav() {
     const emptyS = {
       id: null,
@@ -231,71 +289,6 @@ member.name)`
     };
     dispatch(setFav(emptyS));
   }
-
-  //manejar option with keys
-  const handleKeyDownM = (event) => {
-    const { key } = event;
-
-    if (key === "ArrowUp" || key === "ArrowDown") {
-      event.preventDefault();
-      const modeElement = document.getElementById("modeSelect");
-      const modeIndex = modeElement.selectedIndex;
-      const newModeIndex = key === "ArrowUp" ? modeIndex - 1 : modeIndex + 1;
-
-      if (newModeIndex >= 0 && newModeIndex < modeElement.options.length) {
-        modeElement.selectedIndex = newModeIndex;
-        setMode(modeElement.value);
-      }
-    }
-  };
-
-  const handleKeyDownT = (event) => {
-    const { key } = event;
-
-    if (key === "ArrowUp" || key === "ArrowDown") {
-      event.preventDefault();
-      const themeElement = document.getElementById("themeSelect");
-      const themeIndex = themeElement.selectedIndex;
-      const newThemeIndex = key === "ArrowUp" ? themeIndex - 1 : themeIndex + 1;
-
-      if (newThemeIndex >= 0 && newThemeIndex < themeElement.options.length) {
-        themeElement.selectedIndex = newThemeIndex;
-        setTheme(themeElement.value);
-      }
-    }
-  };
-
-  const handleKeyDownC = (event) => {
-    const { key } = event;
-
-    if (key === "ArrowUp" || key === "ArrowDown") {
-      event.preventDefault();
-      const colorElement = document.getElementById("colorSelect");
-      const colorIndex = colorElement.selectedIndex;
-      const newColorIndex = key === "ArrowUp" ? colorIndex - 1 : colorIndex + 1;
-
-      if (newColorIndex >= 0 && newColorIndex < colorElement.options.length) {
-        colorElement.selectedIndex = newColorIndex;
-        setColor(colorElement.value);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (acce.current) {
-      const editor = acce.current.editor;
-      editor.getSession().on("changeCursor", function (e) {
-        var maxColumn = editor.getSession().getDocument().getLine(0).length;
-        var currentColumn = editor.getCursorPosition().column;
-
-        if (currentColumn >= maxColumn) {
-          editor.setReadOnly(true);
-        } else {
-          editor.setReadOnly(false);
-        }
-      });
-    }
-  }, [code]);
 
   return (
     <div className="all">
@@ -414,7 +407,7 @@ member.name)`
               theme={theme}
               value={code}
               ref={acce}
-              onChange={changeCode}
+              onChange={(newCode) => setCode(newCode)}
               minLines={12}
               maxLines={16}
               width="100%"
