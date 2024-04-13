@@ -20,7 +20,10 @@ function Login() {
   function handleLogin(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/users/login", { email, password })
+      .post("https://carbon-copy.onrender.com/api/users/login", {
+        email,
+        password,
+      })
       .then((user) => {
         dispatch(setUser(user.data.payload));
         Cookies.set("token", user.data.token);
@@ -98,6 +101,7 @@ function Login() {
                 required
               ></input>
             </div>
+
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <p className="forgotPassword font-me">
                 <Link to="/register">Register</Link>
@@ -107,6 +111,7 @@ function Login() {
               </p>
             </div>
           </div>
+
           <div className="button-container">
             <button className="submitButton top">Login</button>
           </div>
