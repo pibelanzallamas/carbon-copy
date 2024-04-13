@@ -29,7 +29,7 @@ function Profile() {
   //obtener usuario
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/users/${id}`)
+      .get(`https://carbon-copy.onrender.com/api/users/${id}`)
       .then((cok) => {
         dispatch(
           setUser({
@@ -50,7 +50,7 @@ function Profile() {
 
     if (password) {
       axios
-        .put(`http://localhost:3000/api/users/pass/${id}`, {
+        .put(`https://carbon-copy.onrender.com/api/users/pass/${id}`, {
           name,
           email,
           password,
@@ -67,7 +67,10 @@ function Profile() {
         });
     } else {
       axios
-        .put(`http://localhost:3000/api/users/${id}`, { name, email })
+        .put(`https://carbon-copy.onrender.com/api/users/${id}`, {
+          name,
+          email,
+        })
         .then((ok) => {
           const newU = ok.data[1][0];
           alerts(`Success!`, `The user has been updated!`, "success");
@@ -84,7 +87,7 @@ function Profile() {
   useEffect(() => {
     const uid = id;
     axios
-      .get(`http://localhost:3000/api/favorites/${uid}`)
+      .get(`https://carbon-copy.onrender.com/api/favorites/${uid}`)
       .then((fav) => setFavs(fav.data))
       .catch((err) => console.log(err));
   }, [modFav]);
@@ -106,7 +109,7 @@ function Profile() {
     let uid = id;
 
     axios
-      .delete("http://localhost:3000/api/favorites/", {
+      .delete("https://carbon-copy.onrender.com/api/favorites/", {
         params: { uid, sid },
       })
       .then((ok) => {

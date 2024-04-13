@@ -77,7 +77,7 @@ member.name)`
   //busca cookies
   useEffect(() => {
     axios
-      .post("http://localhost:3000/api/users/me", {
+      .post("https://carbon-copy.onrender.com/api/users/me", {
         token: Cookies.get("token"),
       })
       .then((cok) => {
@@ -166,13 +166,15 @@ member.name)`
     let sid;
 
     axios
-      .get("http://localhost:3000/api/styles/", {
+      .get("https://carbon-copy.onrender.com/api/styles/", {
         params: { theme, mode, color },
       })
       .then((ok) => {
         sid = ok.data.id;
         axios
-          .get("http://localhost:3000/api/favorites/", { params: { sid, uid } })
+          .get("https://carbon-copy.onrender.com/api/favorites/", {
+            params: { sid, uid },
+          })
           .then((ok) => {
             if (!ok.data.id) setLike(false);
             else setLike(true);
@@ -201,13 +203,13 @@ member.name)`
       uid = user.id;
 
     axios
-      .get("http://localhost:3000/api/styles/", {
+      .get("https://carbon-copy.onrender.com/api/styles/", {
         params: { theme, mode, color },
       })
       .then((ok) => {
         sid = ok.data.id;
         axios
-          .delete("http://localhost:3000/api/favorites/", {
+          .delete("https://carbon-copy.onrender.com/api/favorites/", {
             params: { sid, uid },
           })
           .then((ok) => {
@@ -229,11 +231,18 @@ member.name)`
       uid = user.id;
 
     axios
-      .post("http://localhost:3000/api/styles/register", { theme, mode, color })
+      .post("https://carbon-copy.onrender.com/api/styles/register", {
+        theme,
+        mode,
+        color,
+      })
       .then((ok) => {
         sid = ok.data[0].id;
         axios
-          .post("http://localhost:3000/api/favorites/register", { uid, sid })
+          .post("https://carbon-copy.onrender.com/api/favorites/register", {
+            uid,
+            sid,
+          })
           .then((ok) => {
             if (ok.data[1]) {
               alerts("Success!", "You have saved the style!", "success");

@@ -18,7 +18,7 @@ function Register() {
   function handleRegister(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/users/register", {
+      .post("https://carbon-copy.onrender.com/api/users/register", {
         name,
         email,
         password,

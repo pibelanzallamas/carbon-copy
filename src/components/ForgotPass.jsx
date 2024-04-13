@@ -16,7 +16,7 @@ function ForgotPass() {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:3000/api/users/forgot/${email}`)
+      .post(`https://carbon-copy.onrender.com/api/users/forgot/${email}`)
       .then((user) => {
         [id, password] = user.data;
         axios
