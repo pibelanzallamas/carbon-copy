@@ -15,7 +15,6 @@ function Welcome() {
         <img className="pinB" src={group13}></img>
         <img className="logo" src={carboncopy}></img>
       </div>
-
       <div className="copete">
         <div className="texto-copete font-me">
           <p>Educational project inspired by</p>
@@ -28,6 +27,7 @@ function Welcome() {
           </div>
         </Link>
       </div>
+      <div className="flex-grow"></div>
       <div className="logoP5" alt="logoP5"></div>
     </div>
   );
