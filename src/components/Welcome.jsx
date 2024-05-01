@@ -6,6 +6,7 @@ import carboncopy from "../assets/carboncopy.svg";
 import logoCarbon1 from "../assets/logoCarbon1.svg";
 import group9 from "../assets/Group9.svg";
 import line10 from "../assets/Line10.svg";
+import logoP5 from "../assets/logoP5_color_5.svg";
 
 function Welcome() {
   return (
@@ -27,8 +28,8 @@ function Welcome() {
           </div>
         </Link>
       </div>
-      <div className="flex-grow"></div>
-      <div className="logoP5" alt="logoP5"></div>
+
+      <div className="logoP5"></div>
     </div>
   );
 }

@@ -71,11 +71,13 @@
 }
 
 .logoP5 {
-  background-image: url("../assets/logoP5_color_5.svg");
-  width: 120px;
-  height: 120px;
+  width: 50px;
+  height: 80px;
   position: absolute;
   bottom: 0;
+  background-image: url("../assets/logoP5_color_5.svg");
+  background-position: 50% 50%;
+  border: 1px solid red;
 }
 
 .navbar {
@@ -334,10 +336,6 @@ input:focus {
   box-shadow: none;
 }
 
-.notis {
-  font-family: Poppins;
-}
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -348,6 +346,14 @@ input:focus {
 
 .mini-top {
   margin-top: 0.42rem;
+}
+
+.font-me {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.notis {
+  font-family: Poppins;
 }
 
 .all {
@@ -379,10 +385,6 @@ input:focus {
 }
 .home-icon-div img {
   margin: 0 auto;
-}
-
-.font-me {
-  font-family: "Poppins", sans-serif !important;
 }
 
 /*# sourceMappingURL=App.css.map */
