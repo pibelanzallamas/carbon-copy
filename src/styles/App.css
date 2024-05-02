@@ -85,6 +85,8 @@
     background-repeat: no-repeat;
     width: 200px;
     height: 100px;
+    margin-left: 37rem;
+    margin-bottom: 1rem;
   }
   .portada-welcome {
     width: 49.6875rem;
@@ -92,9 +94,13 @@
   }
   .pinB {
     margin-left: 43.94rem;
+    width: 9.5rem;
+    top: -2rem;
   }
   .pinA {
     margin-left: 40.94rem;
+    margin-top: 3.12rem;
+    width: 6rem;
   }
   .copete {
     width: 49rem;
@@ -118,6 +124,10 @@
 .navbar img {
   margin-left: 5px;
   vertical-align: middle;
+}
+
+.navbar2 {
+  display: none;
 }
 
 .linea {
@@ -155,6 +165,8 @@
   border-radius: 0 15px 15px 15px;
   padding: 0.94rem;
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .preview {
@@ -241,6 +253,50 @@
   cursor: pointer;
 }
 
+.pinA2 {
+  display: none;
+}
+
+.pinB2 {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .linea {
+    display: none;
+  }
+  .navbar {
+    display: none;
+  }
+  .navbar2 {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.94rem;
+  }
+  .navbar2 img {
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+  .titulo {
+    width: 250px;
+  }
+  .subtitulo {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+  .pinA2 {
+    display: block;
+    margin-left: 37.94rem;
+    margin-top: 4.72rem;
+    width: 4rem;
+  }
+  .pinB2 {
+    display: block;
+    margin-left: 40.5rem;
+    margin-top: 6.4rem;
+    width: 6.5rem;
+  }
+}
 .download, .like-button {
   cursor: pointer;
 }
@@ -282,6 +338,32 @@
   border-radius: 0 25px 25px 25px;
 }
 
+.selects-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar3 {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .selects-div {
+    border: 1px solid white;
+    padding: 1rem;
+    background-color: #0047FF;
+    border-radius: 25px;
+    margin-top: 1.4rem;
+    margin-bottom: -1rem;
+    margin-left: -0.94rem;
+    margin-right: -0.94rem;
+    border-bottom-left-radius: 0;
+    display: inline-block;
+  }
+  .navbar3 {
+    display: block;
+  }
+}
 .profile-pic-figure {
   width: 35%;
   margin: 0 auto;
@@ -416,6 +498,37 @@ input:focus {
 }
 .home-icon-div img {
   margin: 0 auto;
+}
+
+.button-container2 {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .box {
+    width: 50rem;
+  }
+  .solapa {
+    margin-left: -0.94rem;
+  }
+  .contenido-big {
+    width: 50vh;
+  }
+  .contenido {
+    background-color: #0047FF;
+    margin: -0.94rem;
+    margin-top: 0;
+  }
+  .button-container2 {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .button-container {
+    display: none;
+  }
+  .box {
+    background: url("../assets/Group1.svg"), linear-gradient(154deg, #0047FF 0%, #DADADA 124.22%);
+  }
 }
 
 /*# sourceMappingURL=App.css.map */

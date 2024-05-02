@@ -5,6 +5,9 @@
     margin-left: 5px
     vertical-align: middle
 
+.navbar2
+  display: none
+
 .linea
   border-bottom: solid $color-principal1 1px
   margin-top: 0.7rem
@@ -35,6 +38,8 @@
   border-radius: 0 15px 15px 15px
   padding: 0.94rem
   flex-grow: 1
+  display: flex
+  justify-content: center
 
 .preview
   border: solid $color-principal1 1px
@@ -104,3 +109,37 @@
   color: $color-principal1
   font-size: 14px
   cursor: pointer
+
+.pinA2
+  display: none
+
+.pinB2
+  display: none
+
+@media (min-width: 800px)
+  .linea
+    display: none
+  .navbar
+    display: none
+  .navbar2
+    display: flex
+    justify-content: flex-end
+    margin-bottom: 0.94rem
+    img
+      margin-left: 5px
+      vertical-align: middle
+  .titulo
+    width: 250px
+  .subtitulo
+    font-size: 1.2rem
+    font-weight: 300
+  .pinA2
+    display: block
+    margin-left: 37.94rem
+    margin-top: 4.72rem
+    width: 4rem
+  .pinB2
+    display: block
+    margin-left: 40.5rem
+    margin-top: 6.4rem
+    width: 6.5rem

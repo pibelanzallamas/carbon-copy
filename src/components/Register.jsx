@@ -6,6 +6,8 @@ import group3 from "../assets/Group3.svg";
 import group4 from "../assets/Group4.svg";
 import group5 from "../assets/Group5.svg";
 import group8 from "../assets/Group8.svg";
+import group19 from "../assets/Group19.svg";
+import group13 from "../assets/Group13.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { alerts } from "../utils/alerts";
 
@@ -46,6 +48,9 @@ function Register() {
 
           <div className="linea"></div>
 
+          <img className="pinA pinA2" src={group19}></img>
+          <img className="pinB pinB2" src={group13}></img>
+
           <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
 
           <p className="subtitulo top font-me"> Give style to your code</p>
@@ -56,63 +61,82 @@ function Register() {
           </div>
 
           <div className="contenido">
-            <div className="preview">
-              <div className="texto">
-                <p className="font-me">
-                  <span className="green">let</span> user = &#123; name:
-                  <span> '{name.substring(0, 25)}'</span>,
-                </p>
-                <p className="font-me">
-                  email: <span>'{email.substring(0, 25)}'</span>,
-                </p>
-                <p className="font-me">
-                  password:{" "}
-                  <span>'{"*".repeat(password.substring(0, 10).length)}'</span>
-                  &#125;
-                </p>
+            <div className="contenido-big">
+              <div className="navbar2">
+                <Link to={"/home"}>
+                  <div className="home-icon-div">
+                    <img
+                      src={home}
+                      alt="vector"
+                      style={{ width: "24px" }}
+                    ></img>
+                  </div>
+                </Link>
+              </div>
+              <div className="preview">
+                <div className="texto">
+                  <p className="font-me">
+                    <span className="green">let</span> user = &#123; name:
+                    <span> '{name.substring(0, 25)}'</span>,
+                  </p>
+                  <p className="font-me">
+                    email: <span>'{email.substring(0, 25)}'</span>,
+                  </p>
+                  <p className="font-me">
+                    password:{" "}
+                    <span>
+                      '{"*".repeat(password.substring(0, 10).length)}'
+                    </span>
+                    &#125;
+                  </p>
+                </div>
+              </div>
+
+              <div className="input-box top">
+                <div className="user-logo">
+                  <img src={group4} alt="group5"></img>
+                </div>
+                <input
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder={name}
+                  type="text"
+                  className="font-me"
+                  maxLength={40}
+                  required
+                ></input>
+              </div>
+
+              <div className="input-box">
+                <img src={group5} alt="group5"></img>
+                <input
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={email}
+                  type="email"
+                  className="font-me"
+                  maxLength={60}
+                  required
+                ></input>
+              </div>
+
+              <div className="input-box">
+                <img src={group8} alt="group5"></img>
+                <input
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder={password}
+                  type="password"
+                  maxLength={20}
+                  required
+                ></input>
+              </div>
+
+              <p className="forgotPassword font-me">
+                <Link to="/login">Log in</Link>
+              </p>
+
+              <div className="button-container2 top">
+                <button className="submitButton">Register</button>
               </div>
             </div>
-
-            <div className="input-box top">
-              <div className="user-logo">
-                <img src={group4} alt="group5"></img>
-              </div>
-              <input
-                onChange={(e) => setName(e.target.value)}
-                placeholder={name}
-                type="text"
-                className="font-me"
-                maxLength={40}
-                required
-              ></input>
-            </div>
-
-            <div className="input-box">
-              <img src={group5} alt="group5"></img>
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={email}
-                type="email"
-                className="font-me"
-                maxLength={60}
-                required
-              ></input>
-            </div>
-
-            <div className="input-box">
-              <img src={group8} alt="group5"></img>
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder={password}
-                type="password"
-                maxLength={20}
-                required
-              ></input>
-            </div>
-
-            <p className="forgotPassword font-me">
-              <Link to="/login">Log in</Link>
-            </p>
           </div>
 
           <div className="button-container">

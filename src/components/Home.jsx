@@ -45,6 +45,8 @@ import group31 from "../assets/Group31.svg";
 import group32 from "../assets/Group32.svg";
 import group32b from "../assets/Group32D.svg";
 import group34 from "../assets/Group34.svg";
+import group19 from "../assets/Group19.svg";
+import group13 from "../assets/Group13.svg";
 import exit from "../assets/exit.svg";
 import { setUser } from "../state/userState";
 import * as htmlToImage from "html-to-image";
@@ -299,6 +301,8 @@ member.name)`
     dispatch(setFav(emptyS));
   }
 
+  //chequear por el tamaño de la pantalla
+
   return (
     <div className="all">
       <div className="box">
@@ -331,78 +335,112 @@ member.name)`
           )}
         </div>
         <div className="linea"></div>
+
+        <img className="pinA pinA2" src={group19}></img>
+        <img className="pinB pinB2" src={group13}></img>
         <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
+
         <p className="subtitulo top font-me"> Give style to your code</p>
-        <select
-          value={mode}
-          onChange={(e) => setMode(e.target.value)}
-          className="selects top font-me"
-          onKeyDown={handleKeyDownM}
-          id="modeSelect"
-        >
-          <option value="apex">Lenguage</option>
-          <option value="c_cpp">C/C++</option>
-          <option value="css">CSS</option>
-          <option value="goland">Go</option>
-          <option value="html">HTML</option>
-          <option value="java">Java</option>
-          <option value="javascript">JavaScript</option>
-          <option value="json">JSON</option>
-          <option value="jsx">JSX</option>
-          <option value="php">PHP</option>
-          <option value="python">Python</option>
-          <option value="ruby">Ruby</option>
-          <option value="sql">SQL</option>
-          <option value="typescript">TypeScript</option>
-        </select>
-        <select
-          value={theme}
-          onChange={(e) => setTheme(e.target.value)}
-          className="selects font-me"
-          onKeyDown={handleKeyDownT}
-          id="themeSelect"
-        >
-          <option value="vibrant_ink">Theme</option>
-          <option value="ambiance">Ambience</option>
-          <option value="chaos">Chaos</option>
-          <option value="dawn">Dawn</option>
-          <option value="dracula">Dracula</option>
-          <option value="github">Github</option>
-          <option value="kuroir">Kuroir</option>
-          <option value="monokai">Monokai</option>
-          <option value="solarized_dark">Solarized Dark</option>
-          <option value="solarized_light">Solarized Light</option>
-          <option value="textmate">Text Mate</option>
-          <option value="terminal">Terminal</option>
-          <option value="tomorrow">Tomorrow</option>
-          <option value="tomorrow_night">Tomorrow Night</option>
-          <option value="twilight">Twilight</option>
-          <option value="xcode">XCode</option>
-        </select>
-        <select
-          value={color}
-          onChange={(e) => setColor(e.target.value)}
-          className="selects font-me"
-          onKeyDown={handleKeyDownC}
-          id="colorSelect"
-        >
-          <option value="#E98A15">Color</option>
-          <option value="#B0E0E6">Powder Blue</option>
-          <option value="#C8A2C8">Lavender</option>
-          <option value="#FFA07A">Light Salmon</option>
-          <option value="#98FB98">Pale Green</option>
-          <option value="#FFB6C1">Light Pink</option>
-          <option value="#87CEFA">Light Sky Blue</option>
-          <option value="#20B2AA">Light Sea Green</option>
-          <option value="#DDA0DD">Plum</option>
-          <option value="#F0E68C">Khaki</option>
-          <option value="#FAFAD2">Light Goldenrod Yellow</option>
-          <option value="#FFDAB9">Peach Puff</option>
-          <option value="#B0C4DE">Light Steel Blue</option>
-          <option value="#90EE90">Light Green</option>
-          <option value="#FFDEAD">Navajo White</option>
-          <option value="#FFC0CB">Pink</option>
-        </select>
+        <div className="selects-div">
+          <select
+            value={mode}
+            onChange={(e) => setMode(e.target.value)}
+            className="selects top font-me"
+            onKeyDown={handleKeyDownM}
+            id="modeSelect"
+          >
+            <option value="apex">Lenguage</option>
+            <option value="c_cpp">C/C++</option>
+            <option value="css">CSS</option>
+            <option value="goland">Go</option>
+            <option value="html">HTML</option>
+            <option value="java">Java</option>
+            <option value="javascript">JavaScript</option>
+            <option value="json">JSON</option>
+            <option value="jsx">JSX</option>
+            <option value="php">PHP</option>
+            <option value="python">Python</option>
+            <option value="ruby">Ruby</option>
+            <option value="sql">SQL</option>
+            <option value="typescript">TypeScript</option>
+          </select>
+          <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            className="selects font-me"
+            onKeyDown={handleKeyDownT}
+            id="themeSelect"
+          >
+            <option value="vibrant_ink">Theme</option>
+            <option value="ambiance">Ambience</option>
+            <option value="chaos">Chaos</option>
+            <option value="dawn">Dawn</option>
+            <option value="dracula">Dracula</option>
+            <option value="github">Github</option>
+            <option value="kuroir">Kuroir</option>
+            <option value="monokai">Monokai</option>
+            <option value="solarized_dark">Solarized Dark</option>
+            <option value="solarized_light">Solarized Light</option>
+            <option value="textmate">Text Mate</option>
+            <option value="terminal">Terminal</option>
+            <option value="tomorrow">Tomorrow</option>
+            <option value="tomorrow_night">Tomorrow Night</option>
+            <option value="twilight">Twilight</option>
+            <option value="xcode">XCode</option>
+          </select>
+          <select
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            className="selects font-me"
+            onKeyDown={handleKeyDownC}
+            id="colorSelect"
+          >
+            <option value="#E98A15">Color</option>
+            <option value="#B0E0E6">Powder Blue</option>
+            <option value="#C8A2C8">Lavender</option>
+            <option value="#FFA07A">Light Salmon</option>
+            <option value="#98FB98">Pale Green</option>
+            <option value="#FFB6C1">Light Pink</option>
+            <option value="#87CEFA">Light Sky Blue</option>
+            <option value="#20B2AA">Light Sea Green</option>
+            <option value="#DDA0DD">Plum</option>
+            <option value="#F0E68C">Khaki</option>
+            <option value="#FAFAD2">Light Goldenrod Yellow</option>
+            <option value="#FFDAB9">Peach Puff</option>
+            <option value="#B0C4DE">Light Steel Blue</option>
+            <option value="#90EE90">Light Green</option>
+            <option value="#FFDEAD">Navajo White</option>
+            <option value="#FFC0CB">Pink</option>
+          </select>
+          <div className="navbar3">
+            <div className="download" onClick={handleDownload}>
+              <img src={group31} alt="vector"></img>
+            </div>
+            {like ? (
+              <div className="like-button" onClick={handleDislike}>
+                <img src={group32b} alt="vector"></img>
+              </div>
+            ) : (
+              <div className="like-button" onClick={handleLike}>
+                <img src={group32} alt="vector"></img>
+              </div>
+            )}
+
+            <Link to={"/login"} onClick={logOut}>
+              <div className="home-icon-div" style={{ padding: "4px" }}>
+                <img src={exit} alt="vector"></img>
+              </div>
+            </Link>
+
+            {user.id ? (
+              <Link to={`/user/${user.id}`} onClick={cerrarFav}>
+                <img src={group34} alt="vector"></img>
+              </Link>
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
         <div
           className="contenido-home top"
           id="ace-react"
