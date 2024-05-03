@@ -43,7 +43,7 @@
 @media (min-width: 800px)
   .selects-div
     border: 1px solid white
-    padding: 1rem
+    padding: 0.94rem
     background-color: $color-principal3
     border-radius: 25px
     margin-top: 1.4rem
@@ -51,9 +51,17 @@
     margin-left: -0.94rem
     margin-right: -0.94rem
     border-bottom-left-radius: 0
-    display: inline-block
+    border-top-left-radius: 0
+    display: flex
+    flex-direction: row
+    justify-content: space-between
   .selects
-    // width: 100px
+    margin-right: 0.94rem
+    width: 150px
   .navbar3
-    display: block
- 
+    display: flex
+    flex-direction: row  
+    align-items: center
+    img
+      margin-left: 5px
+      vertical-align: middle
