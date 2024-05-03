@@ -459,12 +459,13 @@ member.name)`
               ref={acce}
               onChange={(newCode) => setCode(newCode)}
               minLines={12}
-              maxLines={16}
               width="100%"
+              height="30vh"
               showGutter={false}
               highlightActiveLine={false}
               enableBasicAutocompletion={false}
               enableLiveAutocompletion={false}
+              showPrintMargin={false}
             />
           </div>
         </div>
