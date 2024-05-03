@@ -1,6 +1,13 @@
 .download, .like-button
   cursor: pointer
 
+.selects-div
+  display: flex
+  flex-direction: column
+
+.navbar3 
+  display: none 
+
 .selects
   appearance: none
   background-color: transparent
@@ -19,28 +26,24 @@
   padding: 0.94rem
   flex-grow: 1
   display: flex
-  flex-direction: column
-
+  
+  
 .ace-content
   border: 1px solid $color-principal1
   border-radius: 0 25px 25px 25px
-  padding-left: 6px  
-  padding-bottom: 10px
+  padding: 6px
   flex-grow: 1
-  img    
-    margin-left: 0px
-    margin-bottom: 2px
-  
-.ace
-  border-radius: 0 25px 25px 25px
-
-.selects-div
   display: flex
   flex-direction: column
+  align-items: flex-start
+  img
+    margin-bottom: 5px
+  
+.ace
+  border-radius: 0 10px 25px 10px
+  max-lines: 10
+  // 15 -1 
 
-.navbar3 
-  display: none
- 
 @media (min-width: 800px)
   .selects-div
     border: 1px solid white

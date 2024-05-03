@@ -301,8 +301,6 @@ member.name)`
     dispatch(setFav(emptyS));
   }
 
-  //chequear por el tamaño de la pantalla
-
   return (
     <div className="all">
       <div className="box">
@@ -458,9 +456,8 @@ member.name)`
               value={code}
               ref={acce}
               onChange={(newCode) => setCode(newCode)}
-              minLines={12}
               width="100%"
-              height="30vh"
+              height="100%"
               showGutter={false}
               highlightActiveLine={false}
               enableBasicAutocompletion={false}
