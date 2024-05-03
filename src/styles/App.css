@@ -95,7 +95,7 @@
   .pinB {
     margin-left: 43.94rem;
     width: 9.5rem;
-    top: -2rem;
+    margin-top: -2rem;
   }
   .pinA {
     margin-left: 40.94rem;
@@ -293,7 +293,7 @@
   .pinB2 {
     display: block;
     margin-left: 40.5rem;
-    margin-top: 6.4rem;
+    margin-top: 0.1rem;
     width: 6.5rem;
   }
 }
@@ -310,6 +310,7 @@
   padding: 0.6rem 0.8rem;
   margin-bottom: 0.5rem;
   color: #FFF;
+  width: 100%;
 }
 
 .contenido-home {
@@ -350,7 +351,8 @@
 @media (min-width: 800px) {
   .selects-div {
     border: 1px solid white;
-    padding: 0.94rem;
+    padding: 0.94rem 1.88rem;
+    margin-bottom: 0;
     background-color: #0047FF;
     border-radius: 25px;
     margin-top: 1.4rem;
@@ -365,7 +367,13 @@
   }
   .selects {
     margin-right: 0.94rem;
-    width: 150px;
+    margin-bottom: 0;
+  }
+  .style, .format {
+    width: 200px;
+  }
+  .color {
+    width: 100px;
   }
   .navbar3 {
     display: flex;
@@ -375,6 +383,9 @@
   .navbar3 img {
     margin-left: 5px;
     vertical-align: middle;
+  }
+  .contenido-home {
+    padding: 1.88rem;
   }
 }
 .profile-pic-figure {

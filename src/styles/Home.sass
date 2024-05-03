@@ -10,6 +10,7 @@
   padding:  0.6rem 0.8rem
   margin-bottom: 0.5rem
   color: $color-principal1
+  width: 100%
   
 .contenido-home
   margin: 0 -0.94rem -0.94rem -0.94rem
@@ -43,7 +44,8 @@
 @media (min-width: 800px)
   .selects-div
     border: 1px solid white
-    padding: 0.94rem
+    padding: 0.94rem 1.88rem
+    margin-bottom: 0
     background-color: $color-principal3
     border-radius: 25px
     margin-top: 1.4rem
@@ -55,9 +57,17 @@
     display: flex
     flex-direction: row
     justify-content: space-between
+
   .selects
     margin-right: 0.94rem
-    width: 150px
+    margin-bottom: 0
+
+  .style, .format
+    width: 200px
+
+  .color
+    width: 100px
+    
   .navbar3
     display: flex
     flex-direction: row  
@@ -65,3 +75,6 @@
     img
       margin-left: 5px
       vertical-align: middle
+
+  .contenido-home
+    padding: 1.88rem

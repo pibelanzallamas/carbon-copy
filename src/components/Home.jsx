@@ -61,7 +61,7 @@ function Home() {
   const [like, setLike] = useState(false);
   const [mode, setMode] = useState("apex");
   const [theme, setTheme] = useState("vibrant_ink");
-  const [color, setColor] = useState("#e98a15");
+  const [color, setColor] = useState("#FFB800");
   const [colorEditor, setColorEditor] = useState("");
   const [code, setCode] = useState(
     `let members = [{name:'Dylan',
@@ -341,38 +341,17 @@ member.name)`
         <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
 
         <p className="subtitulo top font-me"> Give style to your code</p>
+
         <div className="selects-div">
           <div>
             <select
-              value={mode}
-              onChange={(e) => setMode(e.target.value)}
-              className="selects font-me"
-              onKeyDown={handleKeyDownM}
-              id="modeSelect"
-            >
-              <option value="apex">Lenguage</option>
-              <option value="c_cpp">C/C++</option>
-              <option value="css">CSS</option>
-              <option value="goland">Go</option>
-              <option value="html">HTML</option>
-              <option value="java">Java</option>
-              <option value="javascript">JavaScript</option>
-              <option value="json">JSON</option>
-              <option value="jsx">JSX</option>
-              <option value="php">PHP</option>
-              <option value="python">Python</option>
-              <option value="ruby">Ruby</option>
-              <option value="sql">SQL</option>
-              <option value="typescript">TypeScript</option>
-            </select>
-            <select
               value={theme}
               onChange={(e) => setTheme(e.target.value)}
-              className="selects font-me"
+              className="selects style font-me"
               onKeyDown={handleKeyDownT}
               id="themeSelect"
             >
-              <option value="vibrant_ink">Theme</option>
+              <option value="vibrant_ink">Style</option>
               <option value="ambiance">Ambience</option>
               <option value="chaos">Chaos</option>
               <option value="dawn">Dawn</option>
@@ -390,13 +369,35 @@ member.name)`
               <option value="xcode">XCode</option>
             </select>
             <select
+              value={mode}
+              onChange={(e) => setMode(e.target.value)}
+              className="selects format font-me"
+              onKeyDown={handleKeyDownM}
+              id="modeSelect"
+            >
+              <option value="apex">Format</option>
+              <option value="c_cpp">C/C++</option>
+              <option value="css">CSS</option>
+              <option value="goland">Go</option>
+              <option value="html">HTML</option>
+              <option value="java">Java</option>
+              <option value="javascript">JavaScript</option>
+              <option value="json">JSON</option>
+              <option value="jsx">JSX</option>
+              <option value="php">PHP</option>
+              <option value="python">Python</option>
+              <option value="ruby">Ruby</option>
+              <option value="sql">SQL</option>
+              <option value="typescript">TypeScript</option>
+            </select>
+            <select
               value={color}
               onChange={(e) => setColor(e.target.value)}
-              className="selects font-me"
+              className="selects color font-me"
               onKeyDown={handleKeyDownC}
               id="colorSelect"
             >
-              <option value="#E98A15">Color</option>
+              <option value="#FFB800">Color</option>
               <option value="#B0E0E6">Powder Blue</option>
               <option value="#C8A2C8">Lavender</option>
               <option value="#FFA07A">Light Salmon</option>
