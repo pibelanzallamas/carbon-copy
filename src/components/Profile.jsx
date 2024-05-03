@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import group33 from "../assets/Group33.svg";
-import group3 from "../assets/Group3.svg";
 import group4 from "../assets/Group4.svg";
 import group5 from "../assets/Group5.svg";
 import group8 from "../assets/Group8.svg";
+import group19 from "../assets/Group19.svg";
+import group13 from "../assets/Group13.svg";
+
 import home from "../assets/home.svg";
 import carbonLogo from "../assets/carbonLogo.svg";
 import { Link, useParams, useNavigate } from "react-router-dom";
@@ -130,9 +131,13 @@ function Profile() {
           </Link>
         </div>
         <div className="linea"></div>
-        <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
+        <img className="pinA pinA2" src={group19}></img>
+        <img className="pinB pinB2" src={group13}></img>
+        <Link to={"/home"}>
+          <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
+        </Link>
         <p className="subtitulo top font-me"> Give style to your code</p>
-        <div className="top font-me">
+        <div className="top profile font-me">
           <h4 style={{ color: "white" }}>Profile</h4>
           <form onSubmit={handleChange}>
             <div className="input-box mini-top">
@@ -169,9 +174,12 @@ function Profile() {
             <div className="button-container">
               <button className="update-button">Update</button>
             </div>
+            <div className="button-container2 top">
+              <button className="submitButton">Update</button>
+            </div>
           </form>
         </div>
-        <div className="mini-top font-me">
+        <div className="mini-top favorites font-me">
           <h4 style={{ color: "white" }}>Favorites</h4>
           <div className="favs-container">
             {favs.map((fav, id) => (

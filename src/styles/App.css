@@ -94,13 +94,19 @@
   }
   .pinB {
     margin-left: 43.94rem;
-    width: 9.5rem;
-    margin-top: -2rem;
+    width: 10rem;
+    margin-top: -4rem;
   }
   .pinA {
-    margin-left: 40.94rem;
+    margin-left: 39.94rem;
     margin-top: 3.12rem;
-    width: 6rem;
+    width: 7rem;
+  }
+  .logo {
+    width: 20rem;
+    height: 10rem;
+    margin-top: 12.81rem;
+    margin-left: 1.94rem;
   }
   .copete {
     width: 49rem;
@@ -355,7 +361,6 @@
     margin-bottom: 0;
     background-color: #0047FF;
     border-radius: 25px;
-    margin-top: 1.4rem;
     margin-bottom: -1rem;
     margin-left: -0.94rem;
     margin-right: -0.94rem;
@@ -373,7 +378,7 @@
     width: 200px;
   }
   .color {
-    width: 100px;
+    width: 150px;
   }
   .navbar3 {
     display: flex;
@@ -447,6 +452,22 @@
   margin-right: 0.5rem;
 }
 
+@media (min-width: 800px) {
+  .profile, .favorites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile form, .favorites form {
+    width: 400px;
+  }
+  .button-container {
+    display: block;
+  }
+  .favs-container {
+    width: 400px;
+  }
+}
 * {
   margin: 0;
   padding: 0;

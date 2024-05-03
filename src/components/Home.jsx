@@ -226,7 +226,7 @@ member.name)`
   //likear estilo
   function handleLike() {
     if (!user.id) {
-      alerts("Hey!", "You need to register first!", "warning");
+      alerts("Hey!", "You need to login first!", "warning");
     }
 
     let sid,
@@ -342,7 +342,7 @@ member.name)`
 
         <p className="subtitulo top font-me"> Give style to your code</p>
 
-        <div className="selects-div">
+        <div className="selects-div top">
           <div>
             <select
               value={theme}
