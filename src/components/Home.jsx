@@ -458,6 +458,7 @@ member.name)`
               onChange={(newCode) => setCode(newCode)}
               width="100%"
               height="100%"
+              maxLines={"auto"}
               showGutter={false}
               highlightActiveLine={false}
               enableBasicAutocompletion={false}

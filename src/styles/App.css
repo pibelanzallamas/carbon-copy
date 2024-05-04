@@ -352,7 +352,6 @@
 
 .ace {
   border-radius: 0 10px 25px 10px;
-  max-lines: 10;
 }
 
 @media (min-width: 800px) {
@@ -525,7 +524,7 @@ input:focus {
 }
 
 .box {
-  min-height: 85vh;
+  min-height: 90vh;
   background: linear-gradient(154deg, #0047FF 0%, #DADADA 124.22%);
   width: 19.6875rem;
   border-radius: 25px;
