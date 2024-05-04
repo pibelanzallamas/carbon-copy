@@ -409,6 +409,26 @@
   border-radius: 50%;
 }
 
+.solapa2 {
+  display: none;
+}
+
+.texto-not-found {
+  text-align: center;
+  font-size: 17px;
+  color: #FFF;
+}
+
+.contendor-not-found {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .texto-not-found {
+    margin-top: 2rem;
+    font-size: 21px;
+  }
+}
 .button-small-container {
   display: flex;
   justify-content: flex-end;
