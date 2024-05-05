@@ -6,7 +6,6 @@ import carboncopy from "../assets/carboncopy.svg";
 import logoCarbon1 from "../assets/logoCarbon1.svg";
 import group9 from "../assets/Group9.svg";
 import line10 from "../assets/Line10.svg";
-import logoP5 from "../assets/logoP5_color_5.svg";
 
 function Welcome() {
   return (
@@ -16,6 +15,7 @@ function Welcome() {
         <img className="pinB" src={group13}></img>
         <img className="logo" src={carboncopy}></img>
       </div>
+
       <div className="copete">
         <div className="texto-copete font-me">
           <p>Educational project inspired by</p>
@@ -29,7 +29,9 @@ function Welcome() {
         </Link>
       </div>
 
-      <div className="logoP5"></div>
+      <div className="footer">
+        <div className="logoP5"></div>
+      </div>
     </div>
   );
 }
