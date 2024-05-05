@@ -50,6 +50,7 @@ import group13 from "../assets/Group13.svg";
 import exit from "../assets/exit.svg";
 import { setUser } from "../state/userState";
 import * as htmlToImage from "html-to-image";
+import html2canvas from "html2canvas";
 import download from "downloadjs";
 import Cookies from "js-cookie";
 
@@ -258,10 +259,9 @@ member.name)`
 
   //descargar imagen
   function handleDownload() {
-    htmlToImage
-      .toPng(document.getElementById("ace-react"))
-      .then(function (dataUrl) {
-        download(dataUrl, ".png");
+    html2canvas(document.getElementById("ace-react"))
+      .then((canvas) => {
+        download(canvas.toDataURL("image/png"), "code.png", "image/png");
         alerts("Got it!", "Image download it successfully!", "success");
       })
       .catch(function (error) {
@@ -334,9 +334,14 @@ member.name)`
         </div>
         <div className="linea"></div>
 
-        <img className="pinA pinA2" src={group19}></img>
-        <img className="pinB pinB2" src={group13}></img>
-        <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
+        <img className="pinA pinA2" loading="lazy" src={group19}></img>
+        <img className="pinB pinB2" loading="lazy" src={group13}></img>
+        <img
+          className="titulo top"
+          loading="lazy"
+          src={carbonLogo}
+          alt="carbonLogo"
+        ></img>
 
         <p className="subtitulo top font-me"> Give style to your code</p>
 
@@ -458,6 +463,7 @@ member.name)`
               onChange={(newCode) => setCode(newCode)}
               width="100%"
               height="100%"
+              fontSize={"13px"}
               maxLines={"auto"}
               showGutter={false}
               highlightActiveLine={false}
@@ -473,4 +479,3 @@ member.name)`
 }
 
 export default Home;
-//
