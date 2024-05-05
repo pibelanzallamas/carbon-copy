@@ -224,6 +224,7 @@ member.name)`
         alerts("Sorry!", "We couldn't saved the style!", "warning");
       });
   }
+
   //dislikear estilo
   function handleDislike() {
     let sid,
@@ -255,7 +256,7 @@ member.name)`
   function handleDownload() {
     html2canvas(document.getElementById("ace-react"))
       .then((canvas) => {
-        download(canvas.toDataURL("image/png"), "code.png", "image/png");
+        download(canvas.toDataURL("image/png"), "carbon-copy.png", "image/png");
         alerts("Got it!", "Image download it successfully!", "success");
       })
       .catch(function (error) {
@@ -294,7 +295,6 @@ member.name)`
     };
     dispatch(setFav(emptyS));
   }
-  console.log("lo tengo en fav?: ", like);
 
   return (
     <div className="all">
