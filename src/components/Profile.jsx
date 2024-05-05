@@ -14,18 +14,17 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setUser } from "../state/userState";
 import { setFav } from "../state/favState";
-import Cookies from "js-cookie";
 
 function Profile() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const { id } = useParams();
+  const user = useSelector((state) => state.user);
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [password, setPass] = useState("");
   const [favs, setFavs] = useState([]);
   const [modFav, setModFav] = useState(false);
-  const navigate = useNavigate();
 
   //obtener usuario
   useEffect(() => {
@@ -84,7 +83,7 @@ function Profile() {
     }
   }
 
-  //obtiene favoritos
+  //obtiene todos los favoritos
   useEffect(() => {
     const uid = id;
     axios
@@ -102,6 +101,7 @@ function Profile() {
       color,
     };
     dispatch(setFav(selectFav));
+    alerts("Ok!", "You have select a style!", "success");
     navigate("/home");
   }
 
@@ -115,7 +115,7 @@ function Profile() {
       })
       .then((ok) => {
         setModFav(!modFav);
-        alerts("Oh no!", "You have deleted the style!", "warning");
+        alerts("Ok!", "You have deleted the style!", "info");
       })
       .catch((err) => console.log(err));
   }

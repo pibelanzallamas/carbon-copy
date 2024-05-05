@@ -36,6 +36,7 @@ import "ace-builds/src-noconflict/theme-textmate";
 import "ace-builds/src-noconflict/theme-kuroir";
 import "ace-builds/src-noconflict/theme-ambiance";
 import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../state/userState";
 import { setFav } from "../state/favState";
 import { Link } from "react-router-dom";
 import { alerts } from "../utils/alerts";
@@ -48,8 +49,6 @@ import group34 from "../assets/Group34.svg";
 import group19 from "../assets/Group19.svg";
 import group13 from "../assets/Group13.svg";
 import exit from "../assets/exit.svg";
-import { setUser } from "../state/userState";
-import * as htmlToImage from "html-to-image";
 import html2canvas from "html2canvas";
 import download from "downloadjs";
 import Cookies from "js-cookie";
@@ -60,9 +59,9 @@ function Home() {
   const user = useSelector((state) => state.user);
   const fav = useSelector((state) => state.fav);
   const [like, setLike] = useState(false);
-  const [mode, setMode] = useState("apex");
-  const [theme, setTheme] = useState("vibrant_ink");
-  const [color, setColor] = useState("#FFB800");
+  const [mode, setMode] = useState(fav.format || null);
+  const [theme, setTheme] = useState(fav.style || "vibrant_ink");
+  const [color, setColor] = useState(fav.color || "#FFB800");
   const [colorEditor, setColorEditor] = useState("");
   const [code, setCode] = useState(
     `let members = [{name:'Dylan',
@@ -76,92 +75,6 @@ const plataforma = (members) =>
 members.map(member =>
 member.name)`
   );
-
-  //busca cookies
-  useEffect(() => {
-    axios
-      .post("https://carbon-copy.onrender.com/api/users/me", {
-        token: Cookies.get("token"),
-      })
-      .then((cok) => {
-        dispatch(setUser(cok.data));
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  //manejar option with keys
-  const handleKeyDownM = (event) => {
-    const { key } = event;
-
-    if (key === "ArrowUp" || key === "ArrowDown") {
-      event.preventDefault();
-      const modeElement = document.getElementById("modeSelect");
-      const modeIndex = modeElement.selectedIndex;
-      const newModeIndex = key === "ArrowUp" ? modeIndex - 1 : modeIndex + 1;
-
-      if (newModeIndex >= 0 && newModeIndex < modeElement.options.length) {
-        modeElement.selectedIndex = newModeIndex;
-        setMode(modeElement.value);
-      }
-    }
-  };
-
-  const handleKeyDownT = (event) => {
-    const { key } = event;
-
-    if (key === "ArrowUp" || key === "ArrowDown") {
-      event.preventDefault();
-      const themeElement = document.getElementById("themeSelect");
-      const themeIndex = themeElement.selectedIndex;
-      const newThemeIndex = key === "ArrowUp" ? themeIndex - 1 : themeIndex + 1;
-
-      if (newThemeIndex >= 0 && newThemeIndex < themeElement.options.length) {
-        themeElement.selectedIndex = newThemeIndex;
-        setTheme(themeElement.value);
-      }
-    }
-  };
-
-  const handleKeyDownC = (event) => {
-    const { key } = event;
-
-    if (key === "ArrowUp" || key === "ArrowDown") {
-      event.preventDefault();
-      const colorElement = document.getElementById("colorSelect");
-      const colorIndex = colorElement.selectedIndex;
-      const newColorIndex = key === "ArrowUp" ? colorIndex - 1 : colorIndex + 1;
-
-      if (newColorIndex >= 0 && newColorIndex < colorElement.options.length) {
-        colorElement.selectedIndex = newColorIndex;
-        setColor(colorElement.value);
-      }
-    }
-  };
-
-  //detectar color de fondo de ace-editor
-  useEffect(() => {
-    const editorElement = acce.current.editor.container;
-    const backgroundColor = window
-      .getComputedStyle(editorElement)
-      .getPropertyValue("background-color");
-    const [r, g, b] = backgroundColor
-      .substring(4, backgroundColor.length - 1)
-      .split(",")
-      .map(Number);
-    const hexR = r.toString(16).padStart(2, "0");
-    const hexG = g.toString(16).padStart(2, "0");
-    const hexB = b.toString(16).padStart(2, "0");
-    setColorEditor(`#${hexR}${hexG}${hexB}`);
-  }, [theme]);
-
-  //establecer fav seleccionado
-  useEffect(() => {
-    if (fav.id) {
-      setTheme(fav.style);
-      setMode(fav.format);
-      setColor(fav.color);
-    }
-  }, []);
 
   //detectar estilo si esta en fav
   useEffect(() => {
@@ -179,13 +92,25 @@ member.name)`
             params: { sid, uid },
           })
           .then((ok) => {
-            if (!ok.data.id) setLike(false);
-            else setLike(true);
+            if (ok.data.id) setLike(true);
+            else setLike(false);
           })
           .catch((er) => console.log(er));
       })
       .catch((er) => console.log(er));
   }, [theme, mode, color]);
+
+  //busca cookies
+  useEffect(() => {
+    axios
+      .post("https://carbon-copy.onrender.com/api/users/me", {
+        token: Cookies.get("token"),
+      })
+      .then((cok) => {
+        dispatch(setUser(cok.data));
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   //detectar el lenguaje
   useEffect(() => {
@@ -200,35 +125,72 @@ member.name)`
     }
   }, [code]);
 
-  //dislikear estilo
-  function handleDislike() {
-    let sid,
-      uid = user.id;
+  //detectar color de fondo de ace-editor
+  useEffect(() => {
+    const editorElement = acce.current.editor.container;
+    const backgroundColor = window
+      .getComputedStyle(editorElement)
+      .getPropertyValue("background-color");
+    const [r, g, b] = backgroundColor
+      .substring(4, backgroundColor.length - 1)
+      .split(",")
+      .map(Number);
+    const hexR = r.toString(16).padStart(2, "0");
+    const hexG = g.toString(16).padStart(2, "0");
+    const hexB = b.toString(16).padStart(2, "0");
+    setColorEditor(`#${hexR}${hexG}${hexB}`);
+  }, [theme]);
 
-    axios
-      .get("https://carbon-copy.onrender.com/api/styles/", {
-        params: { theme, mode, color },
-      })
-      .then((ok) => {
-        sid = ok.data.id;
-        axios
-          .delete("https://carbon-copy.onrender.com/api/favorites/", {
-            params: { sid, uid },
-          })
-          .then((ok) => {
-            alerts("Oh no!", "You have deleted the style!", "warning");
-            setLike(false);
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
-  }
+  //manejar option with keys
+  const handleKeyDownM = (event) => {
+    const { key } = event;
+
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const modeElement = document.getElementById("modeSelect");
+      const modeIndex = modeElement.selectedIndex;
+      const newModeIndex = key === "ArrowUp" ? modeIndex - 1 : modeIndex + 1;
+
+      if (newModeIndex >= 0 && newModeIndex < modeElement.options.length) {
+        modeElement.selectedIndex = newModeIndex;
+        setMode(modeElement.value);
+      }
+    }
+  };
+  const handleKeyDownT = (event) => {
+    const { key } = event;
+
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const themeElement = document.getElementById("themeSelect");
+      const themeIndex = themeElement.selectedIndex;
+      const newThemeIndex = key === "ArrowUp" ? themeIndex - 1 : themeIndex + 1;
+
+      if (newThemeIndex >= 0 && newThemeIndex < themeElement.options.length) {
+        themeElement.selectedIndex = newThemeIndex;
+        setTheme(themeElement.value);
+      }
+    }
+  };
+  const handleKeyDownC = (event) => {
+    const { key } = event;
+
+    if (key === "ArrowUp" || key === "ArrowDown") {
+      event.preventDefault();
+      const colorElement = document.getElementById("colorSelect");
+      const colorIndex = colorElement.selectedIndex;
+      const newColorIndex = key === "ArrowUp" ? colorIndex - 1 : colorIndex + 1;
+
+      if (newColorIndex >= 0 && newColorIndex < colorElement.options.length) {
+        colorElement.selectedIndex = newColorIndex;
+        setColor(colorElement.value);
+      }
+    }
+  };
 
   //likear estilo
   function handleLike() {
-    if (!user.id) {
-      alerts("Hey!", "You need to login first!", "warning");
-    }
+    if (!user.id) alerts("Hey!", "You need to login first!", "warning");
 
     let sid,
       uid = user.id;
@@ -252,7 +214,39 @@ member.name)`
               setLike(true);
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            alerts("Sorry!", "We couldn't saved the style!", "warning");
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        alerts("Sorry!", "We couldn't saved the style!", "warning");
+      });
+  }
+  //dislikear estilo
+  function handleDislike() {
+    let sid,
+      uid = user.id;
+
+    axios
+      .get("https://carbon-copy.onrender.com/api/styles/", {
+        params: { theme, mode, color },
+      })
+      .then((ok) => {
+        sid = ok.data.id;
+        axios
+          .delete("https://carbon-copy.onrender.com/api/favorites/", {
+            params: { sid, uid },
+          })
+          .then((ok) => {
+            alerts("Ok!", "You have deleted the style!", "info");
+            setLike(false);
+          })
+          .catch((err) => {
+            console.log(err);
+            alerts("Sorry!", "We couldn't deleted the style!", "warning");
+          });
       })
       .catch((err) => console.log(err));
   }
@@ -300,6 +294,7 @@ member.name)`
     };
     dispatch(setFav(emptyS));
   }
+  console.log("lo tengo en fav?: ", like);
 
   return (
     <div className="all">
