@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import group19 from "../assets/Group19.svg";
 import group13 from "../assets/Group13.svg";
@@ -8,6 +9,25 @@ import group9 from "../assets/Group9.svg";
 import line10 from "../assets/Line10.svg";
 
 function Welcome() {
+  const [big, setBig] = useState(true);
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    function handleResize() {
+      setHeight(window.innerHeight);
+    }
+    window.addEventListener("resize", handleResize);
+    // return () => {
+    //   window.removeEventListener("resize", handleResize);
+    // };
+  }, []);
+
+  useEffect(() => {
+    if (height < 620) setBig(false);
+    else setBig(true);
+  }, [height]);
+
+  console.log(height);
   return (
     <div className="all">
       <div className="portada-welcome">
@@ -29,9 +49,11 @@ function Welcome() {
         </Link>
       </div>
 
-      <div className="footer">
-        <div className="logoP5"></div>
-      </div>
+      {big && (
+        <div className="footer">
+          <div className="logoP5"></div>
+        </div>
+      )}
     </div>
   );
 }
