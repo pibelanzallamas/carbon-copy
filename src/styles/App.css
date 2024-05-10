@@ -127,7 +127,7 @@
   }
   .logoP5 {
     width: 200px;
-    height: 50px;
+    height: 60px;
     background-image: url("../assets/logo_plataforma5_color.svg");
     background-repeat: no-repeat;
   }
@@ -170,9 +170,12 @@
   border-top-right-radius: 15px;
   display: flex;
   align-items: center;
+  padding: 0.5rem 1.2rem;
+  gap: 10px;
 }
 .solapa img {
-  padding: 1rem 0.6rem 1rem 0.9rem;
+  width: 28px;
+  aspect-ratio: 28/6;
 }
 
 .contenido {
@@ -225,6 +228,10 @@
   text-align: center;
   padding: 0.3rem;
 }
+.input-box img {
+  width: 29px;
+  aspect-ratio: 1/1;
+}
 .input-box input {
   background-color: inherit;
   border: none;
@@ -245,6 +252,10 @@
   justify-content: center;
   align-items: center;
   padding: 0.4rem;
+}
+.user-logo img {
+  width: 15px;
+  aspect-ratio: 1/1;
 }
 
 .forgotPassword {
@@ -360,6 +371,7 @@
 .ace-content img {
   margin-bottom: 7px;
   margin-left: 2px;
+  aspect-ratio: 32/8;
 }
 
 .ace {
@@ -456,6 +468,7 @@
 }
 .home-icon-div img {
   margin: 0 auto;
+  aspect-ratio: 1/1;
 }
 
 .button-container2 {

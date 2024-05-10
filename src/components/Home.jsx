@@ -76,6 +76,22 @@ members.map(member =>
 member.name)`
   );
 
+  //detectar color de fondo de ace-editor
+  useEffect(() => {
+    const editorElement = acce.current.editor.container;
+    const backgroundColor = window
+      .getComputedStyle(editorElement)
+      .getPropertyValue("background-color");
+    const [r, g, b] = backgroundColor
+      .substring(4, backgroundColor.length - 1)
+      .split(",")
+      .map(Number);
+    const hexR = r.toString(16).padStart(2, "0");
+    const hexG = g.toString(16).padStart(2, "0");
+    const hexB = b.toString(16).padStart(2, "0");
+    setColorEditor(`#${hexR}${hexG}${hexB}`);
+  }, [theme]);
+
   //detectar estilo si esta en fav
   useEffect(() => {
     let uid = user.id;
@@ -124,22 +140,6 @@ member.name)`
       }
     }
   }, [code]);
-
-  //detectar color de fondo de ace-editor
-  useEffect(() => {
-    const editorElement = acce.current.editor.container;
-    const backgroundColor = window
-      .getComputedStyle(editorElement)
-      .getPropertyValue("background-color");
-    const [r, g, b] = backgroundColor
-      .substring(4, backgroundColor.length - 1)
-      .split(",")
-      .map(Number);
-    const hexR = r.toString(16).padStart(2, "0");
-    const hexG = g.toString(16).padStart(2, "0");
-    const hexB = b.toString(16).padStart(2, "0");
-    setColorEditor(`#${hexR}${hexG}${hexB}`);
-  }, [theme]);
 
   //manejar option with keys
   const handleKeyDownM = (event) => {
