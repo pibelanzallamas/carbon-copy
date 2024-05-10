@@ -331,12 +331,7 @@ member.name)`
 
         <img className="pinA pinA2" loading="lazy" src={group19}></img>
         <img className="pinB pinB2" loading="lazy" src={group13}></img>
-        <img
-          className="titulo top"
-          loading="lazy"
-          src={carbonLogo}
-          alt="carbonLogo"
-        ></img>
+        <img className="titulo top" src={carbonLogo} alt="carbonLogo"></img>
 
         <p className="subtitulo top font-me"> Give style to your code</p>
 
