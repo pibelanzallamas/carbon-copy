@@ -48,7 +48,7 @@ function Login() {
           <div className="navbar">
             <Link to={"/home"}>
               <div className="home-icon-div">
-                <img src={home} alt="vector"></img>
+                <img src={home} alt="vector" style={{ width: "24px" }}></img>
               </div>
             </Link>
           </div>
