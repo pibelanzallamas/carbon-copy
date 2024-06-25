@@ -6,13 +6,11 @@ import ForgotPass from "./components/ForgotPass";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Profile from "./components/Profile";
-import { Analytics } from "@vercel/analytics/react";
 import "./styles/App.css";
 
 function App() {
   return (
     <Routes>
-      <Analytics />
       <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Welcome />} />
       <Route path="/login" element={<Login />} />
