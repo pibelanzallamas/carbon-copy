@@ -4,4 +4,7 @@
 
 ### Descripción: Sitios web para generar imágenes apartir de un script de codigo. Formatos Aceptados: JS, JSX, JSON y HTML y más.
 
+### Description: Websites for generating images from a code script. Supported formats: JS, JSX, JSON, HTML, and more.
+
 ### Sitio Habilitado
+
