@@ -8,17 +8,17 @@ Carbon Copy
 
 _**Español**_
 
-Entrar al sitio web, y utilizar el menú. Para ver el modo admin, mirar la demo.
+Entrar al sitio web, y registrarse con mail y contraseña. Insertar el código en el editor, elegir estilos y descargar con flacha hacia abajo.
 
-Usar mail verdadero para enviar consulta y obtener una respuesta.
+Usar mail verdadero para recibir código de recuperación.
 
 Muchas gracias.
 
 _**English**_
 
-Enter the website and use the menu. To see the admin mode, watch the demo.
+Enter the website and register with email and password. Insert the code in the editor, choose styles, and download by clicking the downward arrow.
 
-Use a real email to send question and receive an answer.
+Use a valid email to receive a recovery code.
 
 Thank you.
 
