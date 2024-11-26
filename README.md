@@ -1,10 +1,25 @@
-# Carbon Copy por Brandon Castillo
+Carbon Copy
 
-### Tecnología: React, Redux, Figma, Css, Sass, PostgreSQL, Express, Node, JWT, Sequelize
+![image](https://res.cloudinary.com/daynclfo8/image/upload/v1732568128/carbon.png)
 
-### Descripción: Sitios web para generar imágenes apartir de un script de codigo. Formatos Aceptados: JS, JSX, JSON y HTML y más.
+[Demo](https://www.youtube.com/watch?v=bb8RomFHFdg)
 
-### Description: Websites for generating images from a code script. Supported formats: JS, JSX, JSON, HTML, and more.
+[Back-End](https://github.com/pibelanzallamas/carbon-copy-back)
 
-### Sitio Habilitado
+_**Español**_
 
+Entrar al sitio web, y utilizar el menú. Para ver el modo admin, mirar la demo.
+
+Usar mail verdadero para enviar consulta y obtener una respuesta.
+
+Muchas gracias.
+
+_**English**_
+
+Enter the website and use the menu. To see the admin mode, watch the demo.
+
+Use a real email to send question and receive an answer.
+
+Thank you.
+
+Brandon
