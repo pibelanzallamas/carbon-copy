@@ -49,6 +49,7 @@ function Welcome() {
       {big && (
         <div className="footer">
           <div className="logoP5"></div>
+          <p class="firma">Made with ❤️ by Brandon 🏰</p>
         </div>
       )}
     </div>
